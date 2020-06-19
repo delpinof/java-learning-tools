@@ -1,4 +1,4 @@
-package test.designpatterns.command;
+package com.fherdelpino.test.designpatterns.command;
 
 import com.fherdelpino.designpatterns.command.commandclass.GarageDoorOpenCommand;
 import com.fherdelpino.designpatterns.command.commandclass.LightOnCommand;

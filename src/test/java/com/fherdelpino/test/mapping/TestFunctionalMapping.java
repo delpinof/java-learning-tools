@@ -1,4 +1,4 @@
-package test.mapping;
+package com.fherdelpino.test.mapping;
 
 import java.util.HashMap;
 import java.util.Map;

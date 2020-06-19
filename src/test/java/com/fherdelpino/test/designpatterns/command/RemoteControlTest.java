@@ -1,4 +1,4 @@
-package test.designpatterns.command;
+package com.fherdelpino.test.designpatterns.command;
 
 import com.fherdelpino.designpatterns.command.control.RemoteControl;
 import com.fherdelpino.designpatterns.command.vendor.Light;
