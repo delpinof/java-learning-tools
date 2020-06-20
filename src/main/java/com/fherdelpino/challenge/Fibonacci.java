@@ -1,38 +1,57 @@
 package com.fherdelpino.challenge;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Fibonacci {
 
     private static long[] memo = new long[100];
 
+    private static long count = 1;
+
     public static long compute(int n) {
         long result = 0;
 
-        if (n == 1) {
-            result = 0;
-        } else if (n == 2) {
-            result = 1;
-        } else {
-            result = compute(n - 1) + compute(n - 2);
+        count++;
+
+        switch (n) {
+            case 1:
+                result = 0;
+                break;
+            case 2:
+                result = 1;
+                break;
+            default:
+                result = compute(n - 1) + compute(n - 2);
         }
 
         return result;
     }
 
-    public static long computeWithMemo(long n) {
+    public static long computeWithMemo(int n) {
         long result = 0;
 
-        if (memo[(int) n] != 0)
-            return memo[(int) n];
+        log.debug("n={}, calls={}", n, count++);
 
-        if (n == 1) {
-            result = 0;
-        } else if (n == 2) {
-            result = 1;
-        } else {
-            result = computeWithMemo(n - 1) + computeWithMemo(n - 2);
-            memo[(int) n] = result;
+        if (memo[n] != 0)
+            return memo[n];
+
+        switch (n) {
+            case 1:
+                result = 0;
+                break;
+            case 2:
+                result = 1;
+                break;
+            default:
+                result = computeWithMemo(n - 1) + computeWithMemo(n - 2);
+                memo[n] = result;
         }
 
         return result;
+    }
+
+    public static long getCount() {
+        return count;
     }
 }

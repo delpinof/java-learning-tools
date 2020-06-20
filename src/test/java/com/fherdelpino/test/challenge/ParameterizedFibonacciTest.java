@@ -31,7 +31,12 @@ public class ParameterizedFibonacciTest {
     }
 
     @Test
-    public void test() {
+    public void testCompute() {
         assertEquals(fExpected, Fibonacci.compute(fInput));
+    }
+
+    @Test
+    public void testComputeWithMemo() {
+        assertEquals(fExpected, Fibonacci.computeWithMemo(fInput));
     }
 }

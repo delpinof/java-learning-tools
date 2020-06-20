@@ -7,7 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 @Slf4j
-public class BigFibonacciTest {
+public class FibonacciTest {
 
     @Test
     public void testBigFibonacciNumbers() {
@@ -25,5 +25,17 @@ public class BigFibonacciTest {
     @Test
     public void test50FibonacciNumberWithMemo() {
         assertEquals(7778742049l, Fibonacci.computeWithMemo(50));
+    }
+
+    @Test
+    public void testFibonacciNumber() {
+        Fibonacci.compute(50);
+        log.info("count={}", Fibonacci.getCount());
+    }
+
+    @Test
+    public void testFibonacciNumberWithMemo() {
+        Fibonacci.computeWithMemo(50);
+        log.info("count={}", Fibonacci.getCount());
     }
 }
