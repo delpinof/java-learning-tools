@@ -2,10 +2,12 @@ package com.fherdelpino.challenge;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.HashMap;
+
 @Slf4j
 public class Fibonacci {
 
-    private static long[] memo = new long[100];
+    private static HashMap<Integer, Long> memo = new HashMap<>();
 
     private static long count = 1;
 
@@ -33,8 +35,8 @@ public class Fibonacci {
 
         log.debug("n={}, calls={}", n, count++);
 
-        if (memo[n] != 0)
-            return memo[n];
+        if (memo.containsKey(n))
+            return memo.get(n);
 
         switch (n) {
             case 1:
@@ -45,7 +47,7 @@ public class Fibonacci {
                 break;
             default:
                 result = computeWithMemo(n - 1) + computeWithMemo(n - 2);
-                memo[n] = result;
+                memo.put(n, result);
         }
 
         return result;
