@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MergeArrays {
+public class ArraysUtils {
 
     public static void main(String[] args) {
 
@@ -13,7 +13,7 @@ public class MergeArrays {
         B[1] = 4;
         B[2] = 8;
 
-        int[] result = new MergeArrays().merge(new int[] { 1, 7, 9 }, B);
+        int[] result = new ArraysUtils().merge(new int[] { 1, 7, 9 }, B);
         for (int i = 0; i < result.length; i++)
             System.out.println(result[i]);
     }
@@ -32,5 +32,27 @@ public class MergeArrays {
             B[i] = numbers.get(i);
 
         return B;
+    }
+
+    /**
+     * Find elements in both arrays.
+     * @param A first array.
+     * @param B second array.
+     * @return number of elements found in both arrays.
+     */
+    public int findDuplicated(int[] A, int[] B) {
+        int count = 0;
+        for (int a = 0, b = 0; a < A.length && b < B.length; ) {
+            if (A[a] == B[b]) {
+                count++;
+                a++;
+                b++;
+            } else if (A[a] > B[b]) {
+                b++;
+            } else {
+                a++;
+            }
+        }
+        return count;
     }
 }
