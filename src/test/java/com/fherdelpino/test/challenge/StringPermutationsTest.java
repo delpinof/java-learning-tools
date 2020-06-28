@@ -1,11 +1,16 @@
 package com.fherdelpino.test.challenge;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import com.fherdelpino.challenge.StringPermutations;
 
+import lombok.extern.slf4j.Slf4j;
+
 import static org.junit.Assert.assertEquals;
 
+@Slf4j
 public class StringPermutationsTest {
 
     @Test
@@ -14,6 +19,13 @@ public class StringPermutationsTest {
         String b = "cbabadcbbabbcbabaabccbabc";
         int numberOfPermutations = new StringPermutations().findPermutations(s, b);
         assertEquals(7, numberOfPermutations);
+    }
+
+    @Test
+    public void findPermutationsTest() {
+        String s = "abcd";
+        List<String> permutations = new StringPermutations().findPermutations(s);
+        log.info("permutations={}", permutations);
     }
 
 }
