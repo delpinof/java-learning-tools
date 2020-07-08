@@ -15,6 +15,11 @@ public class Trie {
         this.childs = new HashSet<>();
     }
 
+    public Trie(char c) {
+        this.c = c;
+        this.childs = new HashSet<>();
+    }
+
     public void addWord(String word) {
         char[] chars = word.toLowerCase().toCharArray();
         char tmpC = chars[0];
@@ -22,8 +27,7 @@ public class Trie {
                 .filter(trie -> trie.c == tmpC)
                 .collect(Collectors.toList());
         if (tries.size() == 0) {
-            Trie t = new Trie();
-            t.c = tmpC;
+            Trie t = new Trie(tmpC);
             if (chars.length > 1)
                 t.addWord(word.substring(1));
             childs.add(t);
