@@ -1,9 +1,9 @@
 package com.fherdelpino.collections.sort;
 
-public class CollectionUtils<T> {
+public class CollectionUtils {
 
-    public void swap(T[] arr, int posX, int posY) {
-        T tmp = arr[posX];
+    public static void swap(int[] arr, int posX, int posY) {
+        int tmp = arr[posX];
         arr[posX] = arr[posY];
         arr[posY] = tmp;
     }

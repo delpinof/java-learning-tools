@@ -13,7 +13,6 @@ public class BubbleSortTest {
         BubbleSort bubbleSort = new BubbleSort();
         int[] result = bubbleSort.sort(testData);
         log.info("result={}", result);
-        log.info("testData10Ints={}", CollectionsTestUtils.testData10Ints);
     }
 
     @Test

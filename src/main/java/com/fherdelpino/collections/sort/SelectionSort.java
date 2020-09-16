@@ -1,5 +1,7 @@
 package com.fherdelpino.collections.sort;
 
+import static com.fherdelpino.collections.sort.CollectionUtils.swap;
+
 public class SelectionSort {
 
     public int[] sort(int[] numbers) {
@@ -16,9 +18,7 @@ public class SelectionSort {
                 }
             }
             if (swap) {
-                int tmp = numbers[i];
-                numbers[i] = numbers[lowestPos];
-                numbers[lowestPos] = tmp;
+                swap(numbers, i, lowestPos);
             }
         }
 
