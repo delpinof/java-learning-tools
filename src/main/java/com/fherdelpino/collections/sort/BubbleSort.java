@@ -17,7 +17,6 @@ public class BubbleSort {
                     swapped = true;
                 }
             }
-            log.info("array={}", numbers);
         } while (swapped);
         return numbers;
     }
