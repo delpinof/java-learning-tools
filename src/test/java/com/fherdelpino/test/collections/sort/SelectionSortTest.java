@@ -13,7 +13,6 @@ public class SelectionSortTest {
         SelectionSort selectionSort = new SelectionSort();
         int[] result = selectionSort.sort(testData);
         log.info("result={}", result);
-
     }
 
     @Test
@@ -28,7 +27,10 @@ public class SelectionSortTest {
     public void test10KIntegers() {
         int[] testData = CollectionsTestUtils.getTestDataNInts(100_000);
         SelectionSort selectionSort = new SelectionSort();
+        long timeStart = System.currentTimeMillis();
         int[] result = selectionSort.sort(testData);
+        long timeTaken = System.currentTimeMillis() - timeStart;
         log.info("result={}", result);
+        log.info("time={}", timeTaken);
     }
 }

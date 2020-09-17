@@ -24,10 +24,13 @@ public class BubbleSortTest {
     }
 
     @Test
-    public void test10KIntegers() {
+    public void test100KIntegers() {
         int[] testData = CollectionsTestUtils.getTestDataNInts(100_000);
         BubbleSort bubbleSort = new BubbleSort();
+        long timeStart = System.currentTimeMillis();
         int[] result = bubbleSort.sort(testData);
+        long timeTaken = System.currentTimeMillis() - timeStart;
         log.info("result={}", result);
+        log.info("time={}", timeTaken);
     }
 }
