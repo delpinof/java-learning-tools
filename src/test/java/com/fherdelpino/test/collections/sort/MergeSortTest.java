@@ -38,7 +38,7 @@ public class MergeSortTest {
     }
 
     @Test
-    public void test100KInts() {
+    public void test1MInts() {
         int[] testData = CollectionsTestUtils.getTestDataNInts(1_000_001);
         long timeStart = System.currentTimeMillis();
         int[] result = mergeSort.sort(testData);
