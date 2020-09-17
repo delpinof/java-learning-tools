@@ -1,7 +1,5 @@
 package com.fherdelpino.collections.sort;
 
-import static com.fherdelpino.collections.sort.CollectionUtils.swap;
-
 public class MergeSort {
 
     public int[] sort(int[] numbers) {
@@ -25,21 +23,18 @@ public class MergeSort {
         //merge left & right
         int leftPos = 0;
         int rightPos = 0;
-        for (int i = 0; i < numbers.length; i++) {
-            if (leftPos >= left.length) {
-                numbers[i] = right[rightPos++];
-                continue;
-            }
-            if (rightPos >= right.length) {
-                numbers[i] = left[leftPos++];
-                continue;
-            }
+        int nPos = 0;
+        while (leftPos < left.length && rightPos < right.length) {
             if (left[leftPos] < right[rightPos]) {
-                numbers[i] = left[leftPos++];
+                numbers[nPos++] = left[leftPos++];
             } else {
-                numbers[i] = right[rightPos++];
+                numbers[nPos++] = right[rightPos++];
             }
         }
+        while (leftPos < left.length)
+            numbers[nPos++] = left[leftPos++];
+        while (rightPos < right.length)
+            numbers[nPos++] = right[rightPos++];
 
         return numbers;
     }

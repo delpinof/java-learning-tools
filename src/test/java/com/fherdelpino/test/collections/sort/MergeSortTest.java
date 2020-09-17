@@ -40,8 +40,11 @@ public class MergeSortTest {
     @Test
     public void test100KInts() {
         int[] testData = CollectionsTestUtils.getTestDataNInts(1000_001);
+        long timeStart = System.currentTimeMillis();
         int[] result = mergeSort.sort(testData);
+        long timeTaken = System.currentTimeMillis() - timeStart;
         log.info("result={}", result);
+        log.info("time={}", timeTaken);
     }
 
     @Test
