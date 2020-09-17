@@ -14,7 +14,7 @@ public class MergeSort {
             left[i] = numbers[i];
             right[i] = numbers[middlePos + i];
         }
-        right[right.length - 1] = numbers[numbers.length - 1];
+        right[right.length - 1] = numbers[numbers.length - 1]; //for odd list sizes
 
         //sort left & right
         left = sort(left);
