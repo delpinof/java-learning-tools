@@ -24,7 +24,7 @@ public class SelectionSortTest {
     }
 
     @Test
-    public void test10KIntegers() {
+    public void test100KIntegers() {
         int[] testData = CollectionsTestUtils.getTestDataNInts(100_000);
         SelectionSort selectionSort = new SelectionSort();
         long timeStart = System.currentTimeMillis();
