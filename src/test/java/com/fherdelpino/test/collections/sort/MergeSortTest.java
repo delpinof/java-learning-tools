@@ -1,6 +1,7 @@
 package com.fherdelpino.test.collections.sort;
 
 import com.fherdelpino.collections.sort.MergeSort;
+import com.fherdelpino.test.collections.CollectionsTestUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,13 +34,13 @@ public class MergeSortTest {
 
     @Test
     public void test10Ints() {
-        int[] testData = CollectionsTestUtils.testData10Ints.clone();
+        int[] testData = CollectionsTestUtils.testData10IntsReverseOrder.clone();
         log.info("result={}", mergeSort.sort(testData));
     }
 
     @Test
     public void test1MInts() {
-        int[] testData = CollectionsTestUtils.getTestDataNInts(1_000_001);
+        int[] testData = CollectionsTestUtils.getTestDataRandomNInts(1_000_001);
         long timeStart = System.currentTimeMillis();
         int[] result = mergeSort.sort(testData);
         long timeTaken = System.currentTimeMillis() - timeStart;

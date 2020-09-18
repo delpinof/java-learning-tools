@@ -1,6 +1,7 @@
 package com.fherdelpino.test.collections.sort;
 
 import com.fherdelpino.collections.sort.QuickSort;
+import com.fherdelpino.test.collections.CollectionsTestUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +25,7 @@ public class QuickSortTest {
 
     @Test
     public void test1MInts() {
-        int[] testData = CollectionsTestUtils.getTestDataNInts(1_000_000);
+        int[] testData = CollectionsTestUtils.getTestDataRandomNInts(1_000_000);
         long timeStart = System.currentTimeMillis();
         int[] result = quickSort.sort(testData, 0, testData.length - 1);
         long timeTaken = System.currentTimeMillis() - timeStart;
