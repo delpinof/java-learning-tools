@@ -19,7 +19,7 @@ public class ModularArithmetic {
 
     @Test
     public void test() {
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 0; i <= 15; i++) {
             log.info("index={} mod={}", i, i % 5);
         }
     }

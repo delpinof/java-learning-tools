@@ -21,4 +21,65 @@ public class LinkedListTest {
             log.info("result={}", queue.poll());
         }
     }
+
+    @Test
+    public void testMyLinkedList_append() {
+        com.fherdelpino.collections.LinkedList linkedList = new com.fherdelpino.collections.LinkedList();
+        for (int i = 5; i > 0; i--) {
+            linkedList.append(i);
+        }
+
+        linkedList.printList();
+    }
+
+    @Test
+    public void testMyLinkedList_prepend() {
+        com.fherdelpino.collections.LinkedList linkedList = new com.fherdelpino.collections.LinkedList();
+        for (int i = 5; i > 0; i--) {
+            linkedList.prepend(i);
+        }
+
+        linkedList.printList();
+    }
+
+    @Test
+    public void testMyLinkedList_removeByValue() {
+        com.fherdelpino.collections.LinkedList linkedList = new com.fherdelpino.collections.LinkedList();
+        for (int i = 5; i > 0; i--) {
+            linkedList.prepend(i);
+        }
+
+        linkedList.removeByValue(5);
+        linkedList.printList();
+    }
+
+    @Test
+    public void testMyLinkedList_removeFront() {
+        com.fherdelpino.collections.LinkedList linkedList = new com.fherdelpino.collections.LinkedList();
+        for (int i = 5; i > 0; i--) {
+            linkedList.prepend(i);
+        }
+        linkedList.printList();
+        log.info("getFront={}", linkedList.getFront());
+        linkedList.printList();
+        log.info("getFront={}", linkedList.getFront());
+        linkedList.printList();
+        log.info("getFront={}", linkedList.getFront());
+        linkedList.printList();
+    }
+
+    @Test
+    public void testMyLinkedList_removeLast() {
+        com.fherdelpino.collections.LinkedList linkedList = new com.fherdelpino.collections.LinkedList();
+        for (int i = 5; i > 0; i--) {
+            linkedList.prepend(i);
+        }
+        linkedList.printList();
+        log.info("getFront={}", linkedList.getLast());
+        linkedList.printList();
+        log.info("getFront={}", linkedList.getLast());
+        linkedList.printList();
+        log.info("getFront={}", linkedList.getLast());
+        linkedList.printList();
+    }
 }
