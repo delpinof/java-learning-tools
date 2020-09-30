@@ -1,12 +1,12 @@
 package com.fherdelpino.datastructures.collections;
 
-public class Queue {
+public class Queue<T> {
 
-    class Node {
-        int value;
+    class Node<T> {
+        T value;
         Node next;
 
-        public Node(int n) {
+        public Node(T n) {
             this.value = n;
         }
     }
@@ -14,8 +14,8 @@ public class Queue {
     Node head;
     Node tail;
 
-    public void enqueue(int n) {
-        Node tmp = new Node(n);
+    public void enqueue(T n) {
+        Node<T> tmp = new Node<>(n);
         if (head == null) {
             head = tmp;
             tail = head;
@@ -25,14 +25,14 @@ public class Queue {
         }
     }
 
-    public int dequeue() {
-        int tmp = head.value;
+    public T dequeue() {
+        T tmp = (T) head.value;
         head = head.next;
         return tmp;
     }
 
-    public int peek() {
-        return head.value;
+    public T peek() {
+        return (T) head.value;
     }
 
     public boolean isEmpty() {

@@ -8,7 +8,7 @@ import org.junit.Test;
 public class QueueTest {
     @Test
     public void testEnqueueAndDequeue() {
-        Queue queue = new Queue();
+        Queue<Integer> queue = new Queue<>();
         for (int i = 1; i <= 5; i++) {
             queue.enqueue(i);
         }

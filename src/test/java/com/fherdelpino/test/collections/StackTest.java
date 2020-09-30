@@ -9,7 +9,7 @@ public class StackTest {
 
     @Test
     public void testPushAndPop() {
-        Stack stack = new Stack();
+        Stack<Integer> stack = new Stack<>();
         for (int i = 5; i > 0; i--) {
             stack.push(i);
         }
