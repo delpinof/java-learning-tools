@@ -8,14 +8,14 @@ import org.junit.Test;
 public class StackTest {
 
     @Test
-    public void testPush() {
+    public void testPushAndPop() {
         Stack stack = new Stack();
-        for (int i = 1; i<=5; i++) {
+        for (int i = 5; i > 0; i--) {
             stack.push(i);
         }
 
         while (!stack.isEmpty()) {
-            log.info("data={}", stack.peek());
+            log.info("data={}", stack.pop());
         }
     }
 }
