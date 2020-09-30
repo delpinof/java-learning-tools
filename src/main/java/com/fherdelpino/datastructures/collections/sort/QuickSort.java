@@ -1,6 +1,6 @@
-package com.fherdelpino.collections.sort;
+package com.fherdelpino.datastructures.collections.sort;
 
-import static com.fherdelpino.collections.sort.CollectionUtils.swap;
+import static com.fherdelpino.datastructures.collections.sort.CollectionUtils.swap;
 
 public class QuickSort {
 

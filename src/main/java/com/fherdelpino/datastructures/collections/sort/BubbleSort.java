@@ -1,8 +1,8 @@
-package com.fherdelpino.collections.sort;
+package com.fherdelpino.datastructures.collections.sort;
 
 import lombok.extern.slf4j.Slf4j;
 
-import static com.fherdelpino.collections.sort.CollectionUtils.swap;
+import static com.fherdelpino.datastructures.collections.sort.CollectionUtils.swap;
 
 @Slf4j
 public class BubbleSort {

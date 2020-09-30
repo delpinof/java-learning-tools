@@ -1,4 +1,4 @@
-package com.fherdelpino.collections;
+package com.fherdelpino.datastructures.collections;
 
 import java.util.Arrays;
 

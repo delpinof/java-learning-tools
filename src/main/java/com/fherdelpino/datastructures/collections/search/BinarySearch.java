@@ -1,4 +1,4 @@
-package com.fherdelpino.collections.search;
+package com.fherdelpino.datastructures.collections.search;
 
 public class BinarySearch {
 

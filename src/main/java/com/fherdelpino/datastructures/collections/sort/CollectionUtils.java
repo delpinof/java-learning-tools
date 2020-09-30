@@ -1,4 +1,4 @@
-package com.fherdelpino.collections.sort;
+package com.fherdelpino.datastructures.collections.sort;
 
 public class CollectionUtils {
 
