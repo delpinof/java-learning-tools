@@ -24,7 +24,7 @@ public class LinkedListTest {
 
     @Test
     public void testMyLinkedList_append() {
-        com.fherdelpino.collections.LinkedList linkedList = new com.fherdelpino.collections.LinkedList();
+        com.fherdelpino.datastructures.collections.LinkedList linkedList = new com.fherdelpino.datastructures.collections.LinkedList();
         for (int i = 5; i > 0; i--) {
             linkedList.append(i);
         }
@@ -34,7 +34,7 @@ public class LinkedListTest {
 
     @Test
     public void testMyLinkedList_prepend() {
-        com.fherdelpino.collections.LinkedList linkedList = new com.fherdelpino.collections.LinkedList();
+        com.fherdelpino.datastructures.collections.LinkedList linkedList = new com.fherdelpino.datastructures.collections.LinkedList();
         for (int i = 5; i > 0; i--) {
             linkedList.prepend(i);
         }
@@ -44,7 +44,7 @@ public class LinkedListTest {
 
     @Test
     public void testMyLinkedList_removeByValue() {
-        com.fherdelpino.collections.LinkedList linkedList = new com.fherdelpino.collections.LinkedList();
+        com.fherdelpino.datastructures.collections.LinkedList linkedList = new com.fherdelpino.datastructures.collections.LinkedList();
         for (int i = 5; i > 0; i--) {
             linkedList.prepend(i);
         }
@@ -55,7 +55,7 @@ public class LinkedListTest {
 
     @Test
     public void testMyLinkedList_removeFront() {
-        com.fherdelpino.collections.LinkedList linkedList = new com.fherdelpino.collections.LinkedList();
+        com.fherdelpino.datastructures.collections.LinkedList linkedList = new com.fherdelpino.datastructures.collections.LinkedList();
         for (int i = 5; i > 0; i--) {
             linkedList.prepend(i);
         }
@@ -70,7 +70,7 @@ public class LinkedListTest {
 
     @Test
     public void testMyLinkedList_removeLast() {
-        com.fherdelpino.collections.LinkedList linkedList = new com.fherdelpino.collections.LinkedList();
+        com.fherdelpino.datastructures.collections.LinkedList linkedList = new com.fherdelpino.datastructures.collections.LinkedList();
         for (int i = 5; i > 0; i--) {
             linkedList.prepend(i);
         }

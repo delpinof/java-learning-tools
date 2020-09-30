@@ -1,6 +1,6 @@
 package com.fherdelpino.test.collections.sort;
 
-import com.fherdelpino.collections.sort.BubbleSort;
+import com.fherdelpino.datastructures.collections.sort.BubbleSort;
 import com.fherdelpino.test.collections.CollectionsTestUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

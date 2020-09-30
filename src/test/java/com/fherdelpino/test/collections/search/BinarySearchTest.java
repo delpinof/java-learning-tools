@@ -1,6 +1,6 @@
 package com.fherdelpino.test.collections.search;
 
-import com.fherdelpino.collections.search.BinarySearch;
+import com.fherdelpino.datastructures.collections.search.BinarySearch;
 import com.fherdelpino.test.collections.CollectionsTestUtils;
 import org.junit.Test;
 

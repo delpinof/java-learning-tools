@@ -1,6 +1,6 @@
 package com.fherdelpino.test.collections.sort;
 
-import com.fherdelpino.collections.sort.MergeSort;
+import com.fherdelpino.datastructures.collections.sort.MergeSort;
 import com.fherdelpino.test.collections.CollectionsTestUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;

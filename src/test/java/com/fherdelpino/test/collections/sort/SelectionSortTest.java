@@ -1,6 +1,6 @@
 package com.fherdelpino.test.collections.sort;
 
-import com.fherdelpino.collections.sort.SelectionSort;
+import com.fherdelpino.datastructures.collections.sort.SelectionSort;
 import com.fherdelpino.test.collections.CollectionsTestUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
