@@ -1,25 +1,12 @@
 package com.fherdelpino.graphs;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.util.HashMap;
-import java.util.Map;
-
-@Getter
-@Setter
-@RequiredArgsConstructor
-public class Node {
-
-    @NonNull
-    private String name;
-
-    private int distanceFromSource = Integer.MAX_VALUE;
-
-    private Node previousNode;
-
-    private Map<Node, Integer> adjacentNodes = new HashMap<>();
-
+public class Node<T> {
+    T data;
+    List<Node<T>> adjacent = new ArrayList<>();
+    public Node(T t) {
+        this.data = t;
+    }
 }
