@@ -6,24 +6,24 @@ import java.util.Queue;
 
 public class Dijkstra {
 
-    public static List<Node> findShortestPath(List<Node> graph, Node source) {
+    public static List<WeightedNode> findShortestPath(List<WeightedNode> graph, WeightedNode source) {
 
-        Queue<Node> unVisitedNodes = new LinkedList<>();
+        Queue<WeightedNode> unVisitedWeightedNodes = new LinkedList<>();
 
         source.setDistanceFromSource(0);
-        unVisitedNodes.add(source);
+        unVisitedWeightedNodes.add(source);
 
-        while (unVisitedNodes.size() > 0) {
-            Node unVisitedNode = unVisitedNodes.poll();
-            for (Node unVisitedNodeChild : unVisitedNode.getAdjacentNodes().keySet()) {
-                int childDistanceFromParent = unVisitedNode.getAdjacentNodes().get(unVisitedNodeChild);
-                int parentDistanceFromSource = unVisitedNode.getDistanceFromSource();
+        while (unVisitedWeightedNodes.size() > 0) {
+            WeightedNode unVisitedWeightedNode = unVisitedWeightedNodes.poll();
+            for (WeightedNode unVisitedWeightedNodeChild : unVisitedWeightedNode.getAdjacentNodes().keySet()) {
+                int childDistanceFromParent = unVisitedWeightedNode.getAdjacentNodes().get(unVisitedWeightedNodeChild);
+                int parentDistanceFromSource = unVisitedWeightedNode.getDistanceFromSource();
                 int childDistanceFromSource = childDistanceFromParent + parentDistanceFromSource;
-                if (childDistanceFromSource < unVisitedNodeChild.getDistanceFromSource()) {
-                    unVisitedNodeChild.setDistanceFromSource(childDistanceFromSource);
-                    unVisitedNodeChild.setPreviousNode(unVisitedNode);
+                if (childDistanceFromSource < unVisitedWeightedNodeChild.getDistanceFromSource()) {
+                    unVisitedWeightedNodeChild.setDistanceFromSource(childDistanceFromSource);
+                    unVisitedWeightedNodeChild.setPreviousWeightedNode(unVisitedWeightedNode);
                 }
-                unVisitedNodes.add(unVisitedNodeChild);
+                unVisitedWeightedNodes.add(unVisitedWeightedNodeChild);
             }
         }
         return graph;
