@@ -1,7 +1,7 @@
 package com.fherdelpino.test.graphs;
 
 import com.fherdelpino.graphs.Dijkstra;
-import com.fherdelpino.graphs.Node;
+import com.fherdelpino.graphs.WeightedNode;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -15,86 +15,86 @@ public class DijkstraTest {
 
     @Test
     public void test() {
-        Node nodeA = new Node("A");
-        Node nodeB = new Node("B");
-        Node nodeC = new Node("C");
-        Node nodeD = new Node("D");
-        Node nodeE = new Node("E");
+        WeightedNode weightedNodeA = new WeightedNode("A");
+        WeightedNode weightedNodeB = new WeightedNode("B");
+        WeightedNode weightedNodeC = new WeightedNode("C");
+        WeightedNode weightedNodeD = new WeightedNode("D");
+        WeightedNode weightedNodeE = new WeightedNode("E");
 
-        nodeA.getAdjacentNodes().put(nodeB, 6);
-        nodeA.getAdjacentNodes().put(nodeD, 1);
+        weightedNodeA.getAdjacentNodes().put(weightedNodeB, 6);
+        weightedNodeA.getAdjacentNodes().put(weightedNodeD, 1);
 
-        nodeD.getAdjacentNodes().put(nodeB, 2);
-        nodeD.getAdjacentNodes().put(nodeE, 1);
+        weightedNodeD.getAdjacentNodes().put(weightedNodeB, 2);
+        weightedNodeD.getAdjacentNodes().put(weightedNodeE, 1);
 
-        nodeE.getAdjacentNodes().put(nodeB, 2);
-        nodeE.getAdjacentNodes().put(nodeC, 5);
+        weightedNodeE.getAdjacentNodes().put(weightedNodeB, 2);
+        weightedNodeE.getAdjacentNodes().put(weightedNodeC, 5);
 
-        nodeB.getAdjacentNodes().put(nodeC, 5);
+        weightedNodeB.getAdjacentNodes().put(weightedNodeC, 5);
 
-        List<Node> graph = new ArrayList<>();
-        graph.add(nodeA);
-        graph.add(nodeB);
-        graph.add(nodeC);
-        graph.add(nodeD);
-        graph.add(nodeE);
+        List<WeightedNode> graph = new ArrayList<>();
+        graph.add(weightedNodeA);
+        graph.add(weightedNodeB);
+        graph.add(weightedNodeC);
+        graph.add(weightedNodeD);
+        graph.add(weightedNodeE);
 
-        List<Node> result = Dijkstra.findShortestPath(graph, nodeA);
+        List<WeightedNode> result = Dijkstra.findShortestPath(graph, weightedNodeA);
 
         printResult(result, "C", 7);
     }
 
     @Test
     public void test2() {
-        Node nodeA = new Node("A");
-        Node nodeB = new Node("B");
-        Node nodeC = new Node("C");
-        Node nodeD = new Node("D");
-        Node nodeE = new Node("E");
-        Node nodeF = new Node("F");
-        Node nodeG = new Node("G");
+        WeightedNode weightedNodeA = new WeightedNode("A");
+        WeightedNode weightedNodeB = new WeightedNode("B");
+        WeightedNode weightedNodeC = new WeightedNode("C");
+        WeightedNode weightedNodeD = new WeightedNode("D");
+        WeightedNode weightedNodeE = new WeightedNode("E");
+        WeightedNode weightedNodeF = new WeightedNode("F");
+        WeightedNode weightedNodeG = new WeightedNode("G");
 
-        nodeA.getAdjacentNodes().put(nodeB, 4);
-        nodeA.getAdjacentNodes().put(nodeC, 3);
-        nodeA.getAdjacentNodes().put(nodeE, 7);
+        weightedNodeA.getAdjacentNodes().put(weightedNodeB, 4);
+        weightedNodeA.getAdjacentNodes().put(weightedNodeC, 3);
+        weightedNodeA.getAdjacentNodes().put(weightedNodeE, 7);
 
-        nodeB.getAdjacentNodes().put(nodeC, 6);
-        nodeB.getAdjacentNodes().put(nodeD, 5);
+        weightedNodeB.getAdjacentNodes().put(weightedNodeC, 6);
+        weightedNodeB.getAdjacentNodes().put(weightedNodeD, 5);
 
-        nodeC.getAdjacentNodes().put(nodeD, 11);
-        nodeC.getAdjacentNodes().put(nodeE, 8);
+        weightedNodeC.getAdjacentNodes().put(weightedNodeD, 11);
+        weightedNodeC.getAdjacentNodes().put(weightedNodeE, 8);
 
-        nodeE.getAdjacentNodes().put(nodeD, 2);
-        nodeE.getAdjacentNodes().put(nodeG, 5);
+        weightedNodeE.getAdjacentNodes().put(weightedNodeD, 2);
+        weightedNodeE.getAdjacentNodes().put(weightedNodeG, 5);
 
-        nodeD.getAdjacentNodes().put(nodeF, 2);
-        nodeD.getAdjacentNodes().put(nodeG, 10);
+        weightedNodeD.getAdjacentNodes().put(weightedNodeF, 2);
+        weightedNodeD.getAdjacentNodes().put(weightedNodeG, 10);
 
-        nodeG.getAdjacentNodes().put(nodeF, 3);
+        weightedNodeG.getAdjacentNodes().put(weightedNodeF, 3);
 
-        List<Node> graph = new ArrayList<>();
-        graph.add(nodeA);
-        graph.add(nodeB);
-        graph.add(nodeC);
-        graph.add(nodeD);
-        graph.add(nodeE);
-        graph.add(nodeF);
-        graph.add(nodeG);
+        List<WeightedNode> graph = new ArrayList<>();
+        graph.add(weightedNodeA);
+        graph.add(weightedNodeB);
+        graph.add(weightedNodeC);
+        graph.add(weightedNodeD);
+        graph.add(weightedNodeE);
+        graph.add(weightedNodeF);
+        graph.add(weightedNodeG);
 
-        List<Node> result = Dijkstra.findShortestPath(graph, nodeA);
+        List<WeightedNode> result = Dijkstra.findShortestPath(graph, weightedNodeA);
 
         printResult(result, "F", 11);
 
     }
 
-    public void printResult(List<Node> result, String value, int shortest) {
-        for (Node n : result) {
+    public void printResult(List<WeightedNode> result, String value, int shortest) {
+        for (WeightedNode n : result) {
             if (n.getName().equals(value)) {
                 assertEquals(shortest, n.getDistanceFromSource());
                 log.info("flow={}", n.getName());
-                while (n.getPreviousNode() != null) {
-                    log.info("flow={}", n.getPreviousNode().getName());
-                    n = n.getPreviousNode();
+                while (n.getPreviousWeightedNode() != null) {
+                    log.info("flow={}", n.getPreviousWeightedNode().getName());
+                    n = n.getPreviousWeightedNode();
                 }
                 break;
             }
