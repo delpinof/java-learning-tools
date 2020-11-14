@@ -1,6 +1,10 @@
 package com.fherdelpino.datastructures.collections;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class BeanBagProblem {
 
@@ -12,7 +16,7 @@ public class BeanBagProblem {
         stock.add(new Product("almond", 3, 24));
 
 
-        System.out.println(new BeanBagProblem().run(stock,9));
+        System.out.println(new BeanBagProblem().run(stock, 9));
     }
 
     private int run(Collection<Product> products, int bag) {
@@ -29,8 +33,6 @@ public class BeanBagProblem {
         return maxProfit;
 
     }
-
-
 
 
 }
