@@ -75,11 +75,11 @@ public class LinkedListTest {
             linkedList.prepend(i);
         }
         linkedList.printList();
-        log.info("getFront={}", linkedList.getLast());
+        log.info("getLast={}", linkedList.getLast());
         linkedList.printList();
-        log.info("getFront={}", linkedList.getLast());
+        log.info("getLast={}", linkedList.getLast());
         linkedList.printList();
-        log.info("getFront={}", linkedList.getLast());
+        log.info("getLast={}", linkedList.getLast());
         linkedList.printList();
     }
 }
