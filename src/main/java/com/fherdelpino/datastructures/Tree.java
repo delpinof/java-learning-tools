@@ -1,5 +1,8 @@
 package com.fherdelpino.datastructures;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Tree {
 
     Tree left;
@@ -53,5 +56,34 @@ public class Tree {
         if (this.right != null) {
             right.printInOrder();
         }
+    }
+
+    public void printBFS() {
+        Queue<Tree> queue = new LinkedList<>();
+        queue.add(this);
+        queue.add(null);
+        while (!queue.isEmpty()) {
+            Tree actual = queue.remove();
+            if (actual != null) {
+                System.out.print(actual.data + " ");
+                if (actual.left != null)
+                    queue.add(actual.left);
+                if (actual.right != null)
+                    queue.add(actual.right);
+            } else {
+                if (!queue.isEmpty()) {
+                    queue.add(null);
+                    System.out.println();
+                }
+            }
+        }
+    }
+
+    public void printDFS() {
+        System.out.println(data);
+        if (this.left != null)
+            this.left.printDFS();
+        if (this.right != null)
+            this.right.printDFS();
     }
 }
