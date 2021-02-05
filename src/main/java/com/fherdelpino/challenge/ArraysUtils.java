@@ -1,41 +1,39 @@
 package com.fherdelpino.challenge;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public class ArraysUtils {
-
-    public static void main(String[] args) {
-
-        int[] B = new int[6];
-        B[0] = 2;
-        B[1] = 4;
-        B[2] = 8;
-
-        int[] result = new ArraysUtils().merge(new int[] { 1, 7, 9 }, B);
-        for (int i = 0; i < result.length; i++)
-            System.out.println(result[i]);
+    //[1,7,9]
+    //[2,4,8,0,0,0]
+    //*
+    //[0,0,9]
+    //[1,2,4,7,8,0]
+    //*
+    public int[] merge(int[] A, int[] B) {
+        int pA = 0;
+        int pB = 0;
+        while (pA < A.length && pB < B.length) {
+            if (A[pA] == 0) {
+                pA++;
+            }
+            if (pA < A.length - 1 && A[pA] > A[pA + 1]) {
+                swap(A, pA, A, pA + 1);
+            }
+            if (A[pA] < B[pB] || B[pB] == 0) {
+                swap(A, pA, B, pB);
+            }
+            pB++;
+        }
+        return B;
     }
 
-    public int[] merge(int[] A, int[] B) {
-
-        List<Integer> numbers = new ArrayList<>();
-        for (int i = 0; i < A.length; i++) {
-            numbers.add(A[i]);
-            numbers.add(B[i]);
-        }
-
-        Collections.sort(numbers);
-
-        for (int i = 0; i < B.length; i++)
-            B[i] = numbers.get(i);
-
-        return B;
+    public void swap(int[] A, int pA, int[] B, int pB) {
+        int tmp = A[pA];
+        A[pA] = B[pB];
+        B[pB] = tmp;
     }
 
     /**
      * Find elements in both arrays.
+     *
      * @param A first array.
      * @param B second array.
      * @return number of elements found in both arrays.
