@@ -67,4 +67,34 @@ public class TreeTest {
         tree.insert(10);
         assertTrue(tree.contains(1));
     }
+
+    @Test
+    public void tree_printBFS() {
+        Tree tree = new Tree(5);
+        tree.insert(3);
+        tree.insert(8);
+        tree.insert(2);
+        tree.insert(7);
+        tree.insert(4);
+        tree.insert(9);
+        tree.insert(1);
+        tree.insert(6);
+        tree.insert(10);
+        tree.printBFS();
+    }
+
+    @Test
+    public void tree_printDFS() {
+        Tree tree = new Tree(5);
+        tree.insert(3);
+        tree.insert(8);
+        tree.insert(2);
+        tree.insert(7);
+        tree.insert(4);
+        tree.insert(9);
+        tree.insert(1);
+        tree.insert(6);
+        tree.insert(10);
+        tree.printDFS();
+    }
 }

@@ -1,4 +1,4 @@
-package com.fherdelpino.datastructures.collections;
+package com.fherdelpino.challenge;
 
 import java.util.ArrayList;
 import java.util.Collection;

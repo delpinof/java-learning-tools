@@ -4,17 +4,20 @@ import org.junit.Test;
 
 import com.fherdelpino.challenge.ArraysUtils;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 public class ArraysUtilsTest {
     ArraysUtils arraysUtils = new ArraysUtils();
 
     @Test
     public void test() {
-        int[] A = { 13, 27, 35, 40, 49, 55, 59 };
-        int[] B = { 17, 35, 39, 40, 55, 58, 60 };
+        int[] B = new int[6];
+        B[0] = 2;
+        B[1] = 4;
+        B[2] = 8;
 
-        int result = arraysUtils.findDuplicated(A, B);
-        assertEquals(3, result);
+        int[] result = arraysUtils.merge(new int[] { 1, 7, 9 }, B);
+
+        assertArrayEquals(new int[]{1,2,4,7,8,9}, result);
     }
 }
