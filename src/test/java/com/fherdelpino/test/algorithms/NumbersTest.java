@@ -23,4 +23,12 @@ public class NumbersTest {
         assertThat(actualResult).isEqualTo(expectedResult);
     }
 
+    @Test
+    public void testJoinNumber() {
+        int[] input = {4,5,6,7};
+        int expectedResult = 4567;
+        int actualResult = numbersUtil.joinNumbers(input);
+        assertThat(actualResult).isEqualTo(expectedResult);
+    }
+
 }

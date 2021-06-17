@@ -21,4 +21,14 @@ public class NumbersUtil {
         }
         return numbersArray;
     }
+
+    public int joinNumbers(int[] numbers) {
+        int resultNumber = 0;
+        int factor = 1;
+        for (int i = numbers.length - 1; i >= 0; i--) {
+            resultNumber += numbers[i] * factor;
+            factor *= 10;
+        }
+        return resultNumber;
+    }
 }
