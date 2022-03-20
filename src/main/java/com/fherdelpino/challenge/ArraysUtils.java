@@ -1,5 +1,8 @@
 package com.fherdelpino.challenge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ArraysUtils {
     //[1,7,9]
     //[2,4,8,0,0,0]
@@ -52,5 +55,29 @@ public class ArraysUtils {
             }
         }
         return count;
+    }
+
+    public int[] getCopy(int[] original, int start, int end) {
+        int[] copy = new int[end - start];
+        for (int i = 0; i < copy.length; i++) {
+            copy[i] = original[start + i];
+        }
+        return copy;
+    }
+
+    public List<int[]> getSubArraysOf(int[] array, int subStringSize) {
+        List<int[]> subArrays = new ArrayList<>();
+        for (int i = 0; i <= array.length - subStringSize; i++) {
+            subArrays.add(getCopy(array, i, i + subStringSize));
+        }
+        return subArrays;
+    }
+
+    public List<int[]> getAllSubArrays(int[] array) {
+        List<int[]> subArrays = new ArrayList<>();
+        for (int i = 1; i<=array.length; i++) {
+            subArrays.addAll(getSubArraysOf(array, i));
+        }
+        return subArrays;
     }
 }
