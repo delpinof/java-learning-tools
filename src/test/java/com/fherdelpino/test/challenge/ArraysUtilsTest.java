@@ -27,12 +27,12 @@ public class ArraysUtilsTest {
     public void testSubArraysOf() {
         int[] inputArray = {1, 2, 3, 4, 5};
 
-        List<int[]> list = arraysUtils.getSubArraysOf(inputArray, 3);
+        int[][] list = arraysUtils.getSubArraysOf(inputArray, 3);
 
-        assertEquals(3, list.size());
-        assertArrayEquals(new int[]{1, 2, 3}, list.get(0));
-        assertArrayEquals(new int[]{2, 3, 4}, list.get(1));
-        assertArrayEquals(new int[]{3, 4, 5}, list.get(2));
+        assertEquals(3, list.length);
+        assertArrayEquals(new int[]{1, 2, 3}, list[0]);
+        assertArrayEquals(new int[]{2, 3, 4}, list[1]);
+        assertArrayEquals(new int[]{3, 4, 5}, list[2]);
 
     }
 
@@ -40,25 +40,25 @@ public class ArraysUtilsTest {
     public void testSubArrays() {
         int[] inputArray = {1, 2, 3, 4, 5};
 
-        List<int[]> list = arraysUtils.getAllSubArrays(inputArray);
+        int[][] list = arraysUtils.getAllSubArrays(inputArray);
 
         int sizeExpected = (inputArray.length + 1) * inputArray.length / 2;
-        assertEquals(sizeExpected, list.size());
-        assertArrayEquals(new int[]{1}, list.get(0));
-        assertArrayEquals(new int[]{2}, list.get(1));
-        assertArrayEquals(new int[]{3}, list.get(2));
-        assertArrayEquals(new int[]{4}, list.get(3));
-        assertArrayEquals(new int[]{5}, list.get(4));
-        assertArrayEquals(new int[]{1, 2}, list.get(5));
-        assertArrayEquals(new int[]{2, 3}, list.get(6));
-        assertArrayEquals(new int[]{3, 4}, list.get(7));
-        assertArrayEquals(new int[]{4, 5}, list.get(8));
-        assertArrayEquals(new int[]{1, 2, 3}, list.get(9));
-        assertArrayEquals(new int[]{2, 3, 4}, list.get(10));
-        assertArrayEquals(new int[]{3, 4, 5}, list.get(11));
-        assertArrayEquals(new int[]{1, 2, 3, 4}, list.get(12));
-        assertArrayEquals(new int[]{2, 3, 4, 5}, list.get(13));
-        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, list.get(14));
+        assertEquals(sizeExpected, list.length);
+        assertArrayEquals(new int[]{1}, list[0]);
+        assertArrayEquals(new int[]{2}, list[1]);
+        assertArrayEquals(new int[]{3}, list[2]);
+        assertArrayEquals(new int[]{4}, list[3]);
+        assertArrayEquals(new int[]{5}, list[4]);
+        assertArrayEquals(new int[]{1, 2}, list[5]);
+        assertArrayEquals(new int[]{2, 3}, list[6]);
+        assertArrayEquals(new int[]{3, 4}, list[7]);
+        assertArrayEquals(new int[]{4, 5}, list[8]);
+        assertArrayEquals(new int[]{1, 2, 3}, list[9]);
+        assertArrayEquals(new int[]{2, 3, 4}, list[10]);
+        assertArrayEquals(new int[]{3, 4, 5}, list[11]);
+        assertArrayEquals(new int[]{1, 2, 3, 4}, list[12]);
+        assertArrayEquals(new int[]{2, 3, 4, 5}, list[13]);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, list[14]);
 
     }
 }

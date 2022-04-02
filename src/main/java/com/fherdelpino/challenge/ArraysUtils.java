@@ -1,8 +1,5 @@
 package com.fherdelpino.challenge;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ArraysUtils {
     //[1,7,9]
     //[2,4,8,0,0,0]
@@ -65,18 +62,24 @@ public class ArraysUtils {
         return copy;
     }
 
-    public List<int[]> getSubArraysOf(int[] array, int subStringSize) {
-        List<int[]> subArrays = new ArrayList<>();
-        for (int i = 0; i <= array.length - subStringSize; i++) {
-            subArrays.add(getCopy(array, i, i + subStringSize));
+    public int[][] getSubArraysOf(int[] array, int subArrayLength) {
+        int numOfSubArrays = array.length - (subArrayLength - 1);
+        int[][] subArrays = new int[numOfSubArrays][];
+        for (int i = 0; i <= array.length - subArrayLength; i++) {
+            subArrays[i] = getCopy(array, i, i + subArrayLength);
         }
         return subArrays;
     }
 
-    public List<int[]> getAllSubArrays(int[] array) {
-        List<int[]> subArrays = new ArrayList<>();
-        for (int i = 1; i<=array.length; i++) {
-            subArrays.addAll(getSubArraysOf(array, i));
+    public int[][] getAllSubArrays(int[] array) {
+        int numOfSubArrays = (array.length + 1) * array.length / 2;
+        int[][] subArrays = new int[numOfSubArrays][];
+        int subArraysLastIdx = 0;
+        for (int mainIdx = 1; mainIdx <= array.length; mainIdx++) {
+            int[][] subArraysOfN = getSubArraysOf(array, mainIdx);
+            for (int subArraysOfNIdx = 0; subArraysOfNIdx < subArraysOfN.length; subArraysOfNIdx++) {
+                subArrays[subArraysLastIdx++] = subArraysOfN[subArraysOfNIdx];
+            }
         }
         return subArrays;
     }
