@@ -1,13 +1,15 @@
 package com.fherdelpino.test.challenge;
 
 import com.fherdelpino.challenge.ArraysUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
-import java.util.List;
+import java.util.Arrays;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
+@Slf4j
 public class ArraysUtilsTest {
     ArraysUtils arraysUtils = new ArraysUtils();
 
@@ -60,5 +62,18 @@ public class ArraysUtilsTest {
         assertArrayEquals(new int[]{2, 3, 4, 5}, list[13]);
         assertArrayEquals(new int[]{1, 2, 3, 4, 5}, list[14]);
 
+    }
+
+    @Test
+    public void testArrays() {
+        int[] inputArray = {6, 7, 8, 9, 10};
+        Arrays.setAll(inputArray, operand -> inputArray[operand] * 10);
+        log.info("{}", inputArray);
+    }
+
+    @Test
+    public void testCountDuplicates() {
+        int result = ArraysUtils.countDuplicates(new int[]{1,2,3}, new int[]{3,4,5});
+        assertEquals(1, result);
     }
 }

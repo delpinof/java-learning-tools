@@ -1,5 +1,7 @@
 package com.fherdelpino.challenge;
 
+import java.util.Arrays;
+
 public class ArraysUtils {
     //[1,7,9]
     //[2,4,8,0,0,0]
@@ -32,13 +34,13 @@ public class ArraysUtils {
     }
 
     /**
-     * Find elements in both arrays.
+     * Count elements in both arrays.
      *
      * @param A first array.
      * @param B second array.
      * @return number of elements found in both arrays.
      */
-    public int findDuplicated(int[] A, int[] B) {
+    public static int countDuplicates(int[] A, int[] B) {
         int count = 0;
         for (int a = 0, b = 0; a < A.length && b < B.length; ) {
             if (A[a] == B[b]) {
@@ -54,19 +56,11 @@ public class ArraysUtils {
         return count;
     }
 
-    public int[] getCopy(int[] original, int start, int end) {
-        int[] copy = new int[end - start];
-        for (int i = 0; i < copy.length; i++) {
-            copy[i] = original[start + i];
-        }
-        return copy;
-    }
-
     public int[][] getSubArraysOf(int[] array, int subArrayLength) {
         int numOfSubArrays = array.length - (subArrayLength - 1);
         int[][] subArrays = new int[numOfSubArrays][];
-        for (int i = 0; i <= array.length - subArrayLength; i++) {
-            subArrays[i] = getCopy(array, i, i + subArrayLength);
+        for (int i = 0; i < numOfSubArrays; i++) {
+            subArrays[i] = Arrays.copyOfRange(array, i, i + subArrayLength);
         }
         return subArrays;
     }
@@ -77,8 +71,8 @@ public class ArraysUtils {
         int subArraysLastIdx = 0;
         for (int mainIdx = 1; mainIdx <= array.length; mainIdx++) {
             int[][] subArraysOfN = getSubArraysOf(array, mainIdx);
-            for (int subArraysOfNIdx = 0; subArraysOfNIdx < subArraysOfN.length; subArraysOfNIdx++) {
-                subArrays[subArraysLastIdx++] = subArraysOfN[subArraysOfNIdx];
+            for (int[] subArrayOfN : subArraysOfN) {
+                subArrays[subArraysLastIdx++] = subArrayOfN;
             }
         }
         return subArrays;
