@@ -2,7 +2,7 @@ package com.fherdelpino.recursion;
 
 import java.util.LinkedList;
 
-public class MathRecursion {
+public class MathUtils {
 
     private int total;
 
@@ -24,5 +24,13 @@ public class MathRecursion {
 
     public static int factorial(int n) {
         return n <= 1 ? n : n * factorial(n - 1);
+    }
+
+    public static int combinatorics(int total, int sample) {
+        int total_f = factorial(total);
+        int sample_f = factorial(sample);
+        int dividend_f = factorial(total-sample);
+
+        return total_f / (sample_f * dividend_f);
     }
 }

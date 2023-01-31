@@ -1,6 +1,6 @@
 package com.fherdelpino.test.recursividad;
 
-import com.fherdelpino.recursion.MathRecursion;
+import com.fherdelpino.recursion.MathUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,13 +10,13 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class MathRecursionTest {
+public class MathUtilsTest {
 
-    MathRecursion sut;
+    MathUtils sut;
 
     @Before
     public void setUp() {
-        sut = new MathRecursion();
+        sut = new MathUtils();
     }
 
     @Test
@@ -35,13 +35,19 @@ public class MathRecursionTest {
 
     @Test
     public void testProduct() {
-        var result = MathRecursion.product(5, 7);
+        var result = MathUtils.product(5, 7);
         assertEquals(35, result);
     }
 
     @Test
     public void testFactorial() {
-        var result = MathRecursion.factorial(5);
+        var result = MathUtils.factorial(5);
         assertEquals(120, result);
+    }
+
+    @Test
+    public void testCombinatorics() {
+        int result = MathUtils.combinatorics(5, 3);
+        assertEquals(10, result);
     }
 }
