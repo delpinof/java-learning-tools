@@ -22,15 +22,27 @@ public class MathUtils {
         }
     }
 
-    public static int factorial(int n) {
-        return n <= 1 ? n : n * factorial(n - 1);
+    public static long factorial(long n) {
+        return factorial(n, n);
     }
 
-    public static int combinatorics(int total, int sample) {
-        int total_f = factorial(total);
-        int sample_f = factorial(sample);
-        int dividend_f = factorial(total-sample);
+    public static long factorial(long n, long r) {
+        return r <= 1 ? n : n * factorial(n - 1, r - 1);
+    }
 
-        return total_f / (sample_f * dividend_f);
+    public static long permutationsWithRepetitions(int n, int r) {
+        return (long) Math.pow(n, r);
+    }
+
+    public static long permutationsNoRepetitions(int n, int r) {
+        return factorial(n, r);
+    }
+
+    public static long combinationsWithRepetitions(int n, int r) {
+        return factorial(n + r - 1) / (factorial(r) * factorial(n - 1));
+    }
+
+    public static long combinationsNoRepetitions(int n, int r) {
+        return permutationsNoRepetitions(n, r) / factorial(r);
     }
 }

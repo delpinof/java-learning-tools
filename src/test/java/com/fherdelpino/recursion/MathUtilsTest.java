@@ -45,8 +45,26 @@ public class MathUtilsTest {
     }
 
     @Test
-    public void testCombinatorics() {
-        int result = MathUtils.combinatorics(5, 3);
-        assertEquals(10, result);
+    public void testPermutationsWithRepetitions() {
+        long result = MathUtils.permutationsWithRepetitions(10, 3);
+        assertEquals(1000, result);
+    }
+
+    @Test
+    public void testPermutationsNoRepetitions() {
+        long result = MathUtils.permutationsNoRepetitions(16, 3);
+        assertEquals(16 * 15 * 14, result);
+    }
+
+    @Test
+    public void testCombinationsNoRepetitions() {
+        long result = MathUtils.combinationsNoRepetitions(16, 3);
+        assertEquals(560, result);
+    }
+
+    @Test
+    public void testCombinationsWithRepetitions() {
+        long result = MathUtils.combinationsWithRepetitions(5,3);
+        assertEquals(35, result);
     }
 }
