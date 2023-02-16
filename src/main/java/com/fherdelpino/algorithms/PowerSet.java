@@ -21,7 +21,7 @@ public class PowerSet {
         return powerSet;
     }
 
-    private List<int[]> bitsRecursive(int[] bits, int i) {
+    public List<int[]> bitsRecursive(int[] bits, int i) {
         List<int[]> list;
         if (i == bits.length) {
             list = new ArrayList<>();
