@@ -86,8 +86,11 @@ public class StringUtils {
     }
 
     public static boolean isPalindrome(String s, int from, int to) {
-        for (int i = from; i <= (to - from) / 2; i++) {
-            if (s.charAt(i) != s.charAt(to - i)) {
+        if (s.length() < 1 || to - from < 0) {
+            return false;
+        }
+        for (int i = from, j = to; j - i > 0; i++, j--) {
+            if (s.charAt(i) != s.charAt(j)) {
                 return false;
             }
         }
