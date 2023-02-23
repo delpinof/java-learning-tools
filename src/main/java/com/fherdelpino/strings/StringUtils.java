@@ -1,8 +1,11 @@
 package com.fherdelpino.strings;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class StringUtils {
 
     public static String getLongestSubstring(String left, String right) {
@@ -67,6 +70,7 @@ public class StringUtils {
     }
 
     public static String longestPalindrome(String s) {
+        log.info("With {}", s.length());
         int maxI = 0;
         int maxJ = 0;
         if (s.length() == 0) {
