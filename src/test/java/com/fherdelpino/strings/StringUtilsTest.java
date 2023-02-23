@@ -1,12 +1,13 @@
 package com.fherdelpino.strings;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 
+@Slf4j
 public class StringUtilsTest {
 
     @Test
@@ -46,4 +47,17 @@ public class StringUtilsTest {
         boolean result = StringUtils.twoStrings(abc, bcz);
         assertThat(result).isTrue();
     }
+
+    @Test
+    public void testIsPalindrome() {
+        boolean result = StringUtils.isPalindrome("abcxcba");
+        assertThat(result).isEqualTo(true);
+    }
+
+    @Test
+    public void testLongestPalindrome2() {
+        String result = StringUtils.longestPalindrome("jrjnbctoqgzimtoklkxcknwmhiztomaofwwzjnhrijwkgmwwuazcowskjhitejnvtblqyepxispasrgvgzqlvrmvhxusiqqzzibcyhpnruhrgbzsmlsuacwptmzxuewnjzmwxbdzqyvsjzxiecsnkdibudtvthzlizralpaowsbakzconeuwwpsqynaxqmgngzpovauxsqgypinywwtmekzhhlzaeatbzryreuttgwfqmmpeywtvpssznkwhzuqewuqtfuflttjcxrhwexvtxjihunpywerkktbvlsyomkxuwrqqmbmzjbfytdddnkasmdyukawrzrnhdmaefzltddipcrhuchvdcoegamlfifzistnplqabtazunlelslicrkuuhosoyduhootlwsbtxautewkvnvlbtixkmxhngidxecehslqjpcdrtlqswmyghmwlttjecvbueswsixoxmymcepbmuwtzanmvujmalyghzkvtoxynyusbpzpolaplsgrunpfgdbbtvtkahqmmlbxzcfznvhxsiytlsxmmtqiudyjlnbkzvtbqdsknsrknsykqzucevgmmcoanilsyyklpbxqosoquolvytefhvozwtwcrmbnyijbammlzrgalrymyfpysbqpjwzirsfknnyseiujadovngogvptphuyzkrwgjqwdhtvgxnmxuheofplizpxijfytfabx");
+        assertThat(result).isEqualTo("qosoq");
+    }
+
 }

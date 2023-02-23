@@ -25,7 +25,7 @@ public class StringUtils {
         }
 
         StringBuilder result = new StringBuilder();
-        for (int i = l.i, j = l.j; i>=0 && j>=0 && matrix[i][j] > 0; i--, j--) {
+        for (int i = l.i, j = l.j; i >= 0 && j >= 0 && matrix[i][j] > 0; i--, j--) {
             result.append(left.charAt(i));
         }
         return result.reverse().toString();
@@ -54,11 +54,44 @@ public class StringUtils {
     }
 
     public static boolean twoStrings(String s1, String s2) {
-        for(int n=1; n<=s2.length(); n++)
-            for (int i=0; i<s2.length()-(n-1); i++) {
-                if (s1.contains(s2.substring(i, i+n)))
+        for (int n = 1; n <= s2.length(); n++)
+            for (int i = 0; i < s2.length() - (n - 1); i++) {
+                if (s1.contains(s2.substring(i, i + n)))
                     return true;
             }
         return false;
     }
+
+    public static boolean isPalindrome(String s) {
+        return isPalindrome(s, 0, s.length() - 1);
+    }
+
+    public static String longestPalindrome(String s) {
+        int maxI = 0;
+        int maxJ = 0;
+        if (s.length() == 0) {
+            return s;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = s.length() - 1; j > i; j--) {
+                if (isPalindrome(s, i, j)) {
+                    if (j - i > maxJ - maxI) {
+                        maxI = i;
+                        maxJ = j;
+                    }
+                }
+            }
+        }
+        return s.substring(maxI, maxJ + 1);
+    }
+
+    public static boolean isPalindrome(String s, int from, int to) {
+        for (int i = from; i <= (to - from) / 2; i++) {
+            if (s.charAt(i) != s.charAt(to - i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
