@@ -1,4 +1,7 @@
-package com.fherdelpino.challenge;
+package com.fherdelpino.strings;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StringUtils {
 
@@ -32,5 +35,30 @@ public class StringUtils {
         int i;
         int j;
         int value;
+    }
+
+    public static List<String> getSubstrings(String word) {
+        List<String> permutations = new ArrayList<>();
+        for (int n = 1; n <= word.length(); n++) {
+            permutations.addAll(getSubstringsOf(word, n));
+        }
+        return permutations;
+    }
+
+    public static List<String> getSubstringsOf(String word, int n) {
+        List<String> permutations = new ArrayList<>();
+        for (int i = 0; i < word.length() - (n - 1); i++) {
+            permutations.add(word.substring(i, i + n));
+        }
+        return permutations;
+    }
+
+    public static boolean twoStrings(String s1, String s2) {
+        for(int n=1; n<=s2.length(); n++)
+            for (int i=0; i<s2.length()-(n-1); i++) {
+                if (s1.contains(s2.substring(i, i+n)))
+                    return true;
+            }
+        return false;
     }
 }

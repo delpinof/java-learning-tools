@@ -1,7 +1,10 @@
-package com.fherdelpino.challenge;
+package com.fherdelpino.strings;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
+
+import java.util.List;
 
 
 public class StringUtilsTest {
@@ -26,5 +29,21 @@ public class StringUtilsTest {
             prefix = prefix.substring(0, prefix.length() - 1);
         }
         assertThat(prefix).isEqualTo("leet");
+    }
+
+    @Test
+    public void testGetSubstrings() {
+        String abc= "abc";
+        List<String> result = StringUtils.getSubstrings(abc);
+
+        assertThat(result).contains("a", "b", "c", "ab", "bc", "abc");
+    }
+
+    @Test
+    public void testTwoStrings() {
+        String abc = "abc";
+        String bcz = "bcz";
+        boolean result = StringUtils.twoStrings(abc, bcz);
+        assertThat(result).isTrue();
     }
 }
