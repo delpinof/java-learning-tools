@@ -1,9 +1,13 @@
 package com.fherdelpino.strings;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -34,7 +38,7 @@ public class StringUtilsTest {
 
     @Test
     public void testGetSubstrings() {
-        String abc= "abc";
+        String abc = "abc";
         List<String> result = StringUtils.getSubstrings(abc);
 
         assertThat(result).contains("a", "b", "c", "ab", "bc", "abc");
@@ -48,14 +52,25 @@ public class StringUtilsTest {
         assertThat(result).isTrue();
     }
 
-    @Test
-    public void testIsPalindrome() {
-        boolean result = StringUtils.isPalindrome("abcxcba");
-        assertThat(result).isEqualTo(true);
+    @ParameterizedTest
+    @MethodSource("isPalindromeArgumentsProvider")
+    public void testIsPalindrome(String s, boolean expected) {
+        boolean actual = StringUtils.isPalindrome(s);
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    public static Stream<Arguments> isPalindromeArgumentsProvider() {
+        return Stream.of(
+                Arguments.of("abba", true),
+                Arguments.of("abcba", true),
+                Arguments.of("abcxba", false),
+                Arguments.of("c", true),
+                Arguments.of("", false)
+        );
     }
 
     @Test
-    public void testLongestPalindrome2() {
+    public void testLongestPalindrome() {
         String result = StringUtils.longestPalindrome("jrjnbctoqgzimtoklkxcknwmhiztomaofwwzjnhrijwkgmwwuazcowskjhitejnvtblqyepxispasrgvgzqlvrmvhxusiqqzzibcyhpnruhrgbzsmlsuacwptmzxuewnjzmwxbdzqyvsjzxiecsnkdibudtvthzlizralpaowsbakzconeuwwpsqynaxqmgngzpovauxsqgypinywwtmekzhhlzaeatbzryreuttgwfqmmpeywtvpssznkwhzuqewuqtfuflttjcxrhwexvtxjihunpywerkktbvlsyomkxuwrqqmbmzjbfytdddnkasmdyukawrzrnhdmaefzltddipcrhuchvdcoegamlfifzistnplqabtazunlelslicrkuuhosoyduhootlwsbtxautewkvnvlbtixkmxhngidxecehslqjpcdrtlqswmyghmwlttjecvbueswsixoxmymcepbmuwtzanmvujmalyghzkvtoxynyusbpzpolaplsgrunpfgdbbtvtkahqmmlbxzcfznvhxsiytlsxmmtqiudyjlnbkzvtbqdsknsrknsykqzucevgmmcoanilsyyklpbxqosoquolvytefhvozwtwcrmbnyijbammlzrgalrymyfpysbqpjwzirsfknnyseiujadovngogvptphuyzkrwgjqwdhtvgxnmxuheofplizpxijfytfabx");
         assertThat(result).isEqualTo("qosoq");
     }
