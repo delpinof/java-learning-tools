@@ -2,20 +2,11 @@ package com.fherdelpino.challenge;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Slf4j
 public class Matrix {
-
-    private final int SIZE;
-
-    private int[][] matrix;
-
-    public Matrix(int size) {
-        SIZE = size;
-    }
-
-    public void add(int row, int column, int value) {
-        matrix[row][column] = value;
-    }
 
 
     public static int[][] crossProduct(int[][] a, int[][] b) {
@@ -51,5 +42,73 @@ public class Matrix {
         }
 
         return product;
+    }
+
+    public static Map<Integer, Map<Integer, Integer>> convert(int[][] m) {
+        Map<Integer, Map<Integer, Integer>> result = new HashMap<>();
+        for (int row = 0; row < m.length; row++) {
+            for (int col = 0; col < m[0].length; col++) {
+                if (!result.containsKey(row)) {
+                    result.put(row, new HashMap<>());
+                }
+                result.get(row).put(col, m[row][col]);
+            }
+        }
+        return result;
+    }
+
+    public static Map<Integer, Map<Integer, Integer>> invert(Map<Integer, Map<Integer, Integer>> m) {
+        Map<Integer, Map<Integer, Integer>> result = new HashMap<>();
+        //TODO
+        return result;
+    }
+
+    public static Map<Integer, Map<Integer, Integer>> crossProduct(Map<Integer, Map<Integer, Integer>> a, Map<Integer, Map<Integer, Integer>> b) {
+        Map<Integer, Map<Integer, Integer>> result = new HashMap<>();
+        for (Integer rowIndex : a.keySet()) {
+            Map<Integer, Integer> row = a.get(rowIndex);
+            for (Integer colIndex : row.keySet()) {
+                Integer value = row.get(colIndex);
+                //TODO
+
+            }
+        }
+        return result;
+    }
+
+    static class KeyPair {
+
+        private Integer value;
+        private int log = 1;
+
+        public KeyPair(int row, int col) {
+            value = col;
+            while (col > 0) {
+                col /= 10;
+                log *= 10;
+            }
+            value += row * log;
+        }
+
+        public int getRow() {
+            return value / log;
+        }
+
+        public int getCol() {
+            return value % log;
+        }
+
+        @Override
+        public int hashCode() {
+            return value.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj instanceof KeyPair) {
+                return this.value.equals(((KeyPair) obj).value);
+            }
+            return false;
+        }
     }
 }
