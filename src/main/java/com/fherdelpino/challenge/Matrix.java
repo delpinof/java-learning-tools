@@ -91,7 +91,11 @@ public class Matrix {
             for (Integer colIndex : a.get(rowIndex).keySet()) {
                 int dotProduct = 0;
                 for (int i = 0; i < a.get(rowIndex).keySet().size(); i++) {
-                    dotProduct += a.getOrDefault(rowIndex, empty).getOrDefault(i, 0) * b.getOrDefault(i, empty).getOrDefault(colIndex, 0);
+                    var aValue = a.getOrDefault(rowIndex, empty)
+                            .getOrDefault(i, 0);
+                    var bValue = b.getOrDefault(i, empty)
+                            .getOrDefault(colIndex, 0);
+                    dotProduct += aValue * bValue;
                 }
                 if (!result.containsKey(rowIndex)) {
                     result.put(rowIndex, new HashMap<>());
