@@ -14,7 +14,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class MatrixTest {
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{index} => {arguments}")
     @MethodSource("matrixProductDataProvider")
     public void testMatrixCrossProduct(int[][] m, int[][] n, int[][] expected) {
 

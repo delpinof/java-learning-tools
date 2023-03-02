@@ -97,10 +97,12 @@ public class Matrix {
                             .getOrDefault(colIndex, 0);
                     dotProduct += aValue * bValue;
                 }
-                if (!result.containsKey(rowIndex)) {
-                    result.put(rowIndex, new HashMap<>());
+                if (dotProduct != 0) {
+                    if (!result.containsKey(rowIndex)) {
+                        result.put(rowIndex, new HashMap<>());
+                    }
+                    result.get(rowIndex).put(colIndex, dotProduct);
                 }
-                result.get(rowIndex).put(colIndex, dotProduct);
             }
         }
         return result;
