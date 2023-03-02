@@ -108,14 +108,26 @@ public class Matrix {
         return result;
     }
 
+    public static Map<KeyPair, Integer> crossProduct(Map<Matrix.KeyPair, Integer> a, Map<Matrix.KeyPair, Integer> b, int size) {
+        Map<KeyPair, Integer> result = new HashMap<>();
+        for (Matrix.KeyPair keyPair : a.keySet()) {
+            int dot = 0;
+            for (int i = 0; i < size; i++) {
+                dot += a.get(KeyPair.of(keyPair.getRow(), i)) * b.get(KeyPair.of(i, keyPair.getCol()));
+            }
+            result.put(keyPair, dot);
+        }
+        return result;
+    }
+
     static class KeyPair {
 
         private Integer value;
-        private int log = 1;
+        private int log = 10;
 
         public KeyPair(int row, int col) {
             value = col;
-            while (col > 0) {
+            while (col > 10) {
                 col /= 10;
                 log *= 10;
             }
@@ -128,6 +140,10 @@ public class Matrix {
 
         public int getCol() {
             return value % log;
+        }
+
+        public static KeyPair of(int row, int col) {
+            return new KeyPair(row, col);
         }
 
         @Override

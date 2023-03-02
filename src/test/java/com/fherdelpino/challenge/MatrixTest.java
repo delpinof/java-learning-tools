@@ -1,6 +1,7 @@
 package com.fherdelpino.challenge;
 
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -29,6 +30,31 @@ public class MatrixTest {
         var result = Matrix.crossProduct(Matrix.convert(m), Matrix.convert(n));
         printMatrix(result);
         assertThat(result).isEqualTo(Matrix.convert(expected));
+    }
+
+    @Test
+    public void testCrossProductKeyPair() {
+        Map<Matrix.KeyPair, Integer> m = Map.of(
+                Matrix.KeyPair.of(0, 0), 1,
+                Matrix.KeyPair.of(0, 1), 2,
+                Matrix.KeyPair.of(0, 2), 3,
+                Matrix.KeyPair.of(1, 0), 1,
+                Matrix.KeyPair.of(1, 1), 2,
+                Matrix.KeyPair.of(1, 2), 3,
+                Matrix.KeyPair.of(2, 0), 1,
+                Matrix.KeyPair.of(2, 1), 2,
+                Matrix.KeyPair.of(2, 2), 3
+        );
+
+        Map<Matrix.KeyPair, Integer> result = Matrix.crossProduct(m, m, 3);
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                int value = result.get(Matrix.KeyPair.of(i, j));
+                System.out.print(value + ", ");
+            }
+            System.out.println();
+        }
     }
 
     public static Stream<Arguments> matrixProductDataProvider() {
@@ -68,7 +94,11 @@ public class MatrixTest {
         return Stream.of(
                 arguments(1, 1, 11),
                 arguments(5, 8, 58),
-                arguments(11, 22, 1122)
+                arguments(11, 22, 1122),
+                arguments(1, 0, 10),
+                arguments(0, 1, 1),
+                arguments(0, 0, 0),
+                arguments(123, 456, 123456)
         );
     }
 
