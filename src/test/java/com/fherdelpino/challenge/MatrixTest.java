@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class MatrixTest {
 
@@ -49,8 +50,8 @@ public class MatrixTest {
         };
 
         return Stream.of(
-                Arguments.of(m, m, expected),
-                Arguments.of(m, identity, m)
+                arguments(m, m, expected),
+                arguments(m, identity, m)
         );
     }
 
@@ -65,9 +66,9 @@ public class MatrixTest {
 
     private static Stream<Arguments> keyPairTestDataProvider() {
         return Stream.of(
-                Arguments.of(1, 1, 11),
-                Arguments.of(5, 8, 58),
-                Arguments.of(11, 22, 1122)
+                arguments(1, 1, 11),
+                arguments(5, 8, 58),
+                arguments(11, 22, 1122)
         );
     }
 
@@ -112,8 +113,8 @@ public class MatrixTest {
         );
 
         return Stream.of(
-                Arguments.of(m, map),
-                Arguments.of(m2, map2)
+                arguments(m, map),
+                arguments(m2, map2)
         );
     }
 
@@ -152,8 +153,8 @@ public class MatrixTest {
                 {0, 0, 1}
         };
         return Stream.of(
-                Arguments.of(m, inverted),
-                Arguments.of(identity, identity)
+                arguments(m, inverted),
+                arguments(identity, identity)
         );
     }
 }
