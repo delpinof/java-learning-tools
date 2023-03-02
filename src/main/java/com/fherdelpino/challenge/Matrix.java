@@ -48,10 +48,22 @@ public class Matrix {
         Map<Integer, Map<Integer, Integer>> result = new HashMap<>();
         for (int row = 0; row < m.length; row++) {
             for (int col = 0; col < m[0].length; col++) {
-                if (!result.containsKey(row)) {
-                    result.put(row, new HashMap<>());
+                if (m[row][col] != 0) {
+                    if (!result.containsKey(row)) {
+                        result.put(row, new HashMap<>());
+                    }
+                    result.get(row).put(col, m[row][col]);
                 }
-                result.get(row).put(col, m[row][col]);
+            }
+        }
+        return result;
+    }
+
+    public static int[][] invert(int[][] m) {
+        int[][] result = new int[m.length][m[0].length];
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[0].length; j++) {
+                result[j][i] = m[i][j];
             }
         }
         return result;
@@ -59,18 +71,32 @@ public class Matrix {
 
     public static Map<Integer, Map<Integer, Integer>> invert(Map<Integer, Map<Integer, Integer>> m) {
         Map<Integer, Map<Integer, Integer>> result = new HashMap<>();
-        //TODO
+        for (int rowKey : m.keySet()) {
+            Map<Integer, Integer> row = m.get(rowKey);
+            for (int colKey : row.keySet()) {
+                int value = row.get(colKey);
+                if (!result.containsKey(colKey)) {
+                    result.put(colKey, new HashMap<>());
+                }
+                result.get(colKey).put(rowKey, value);
+            }
+        }
         return result;
     }
 
     public static Map<Integer, Map<Integer, Integer>> crossProduct(Map<Integer, Map<Integer, Integer>> a, Map<Integer, Map<Integer, Integer>> b) {
         Map<Integer, Map<Integer, Integer>> result = new HashMap<>();
+        Map<Integer, Integer> empty = new HashMap<>();
         for (Integer rowIndex : a.keySet()) {
-            Map<Integer, Integer> row = a.get(rowIndex);
-            for (Integer colIndex : row.keySet()) {
-                Integer value = row.get(colIndex);
-                //TODO
-
+            for (Integer colIndex : a.get(rowIndex).keySet()) {
+                int dotProduct = 0;
+                for (int i = 0; i < a.get(rowIndex).keySet().size(); i++) {
+                    dotProduct += a.getOrDefault(rowIndex, empty).getOrDefault(i, 0) * b.getOrDefault(i, empty).getOrDefault(colIndex, 0);
+                }
+                if (!result.containsKey(rowIndex)) {
+                    result.put(rowIndex, new HashMap<>());
+                }
+                result.get(rowIndex).put(colIndex, dotProduct);
             }
         }
         return result;

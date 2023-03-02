@@ -1,18 +1,16 @@
 package com.fherdelpino.challenge;
 
 
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Slf4j
 public class MatrixTest {
 
     @ParameterizedTest
@@ -22,6 +20,14 @@ public class MatrixTest {
         int[][] result = Matrix.crossProduct(m, n);
 
         assertThat(result).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @MethodSource("matrixProductDataProvider")
+    public void testMatrixMapCrossProduct(int[][] m, int[][] n, int[][] expected) {
+        var result = Matrix.crossProduct(Matrix.convert(m), Matrix.convert(n));
+        printMatrix(result);
+        assertThat(result).isEqualTo(Matrix.convert(expected));
     }
 
     public static Stream<Arguments> matrixProductDataProvider() {
@@ -35,8 +41,16 @@ public class MatrixTest {
                 {6, 12, 18},
                 {6, 12, 18}
         };
+
+        int[][] identity = {
+                {1, 0, 0},
+                {0, 1, 0},
+                {0, 0, 1}
+        };
+
         return Stream.of(
-                Arguments.of(m, m, expected)
+                Arguments.of(m, m, expected),
+                Arguments.of(m, identity, m)
         );
     }
 
@@ -61,8 +75,12 @@ public class MatrixTest {
     @MethodSource("matrixConverterDataProvider")
     public void testConvert(int[][] m, Map<Integer, Map<Integer, Integer>> expected) {
         Map<Integer, Map<Integer, Integer>> result = Matrix.convert(m);
+        printMatrix(result);
         assertThat(result).isEqualTo(expected);
-        for (Map<Integer, Integer> row : result.values()) {
+    }
+
+    private void printMatrix(Map<Integer, Map<Integer, Integer>> m) {
+        for (Map<Integer, Integer> row : m.values()) {
             for (int value : row.values()) {
                 System.out.print(value);
                 System.out.print(", ");
@@ -77,21 +95,65 @@ public class MatrixTest {
                 {4, 5, 6},
                 {7, 8, 9}
         };
-        Map<Integer, Map<Integer, Integer>> map = new HashMap<>();
-        map.put(0, new HashMap<>());
-        map.put(1, new HashMap<>());
-        map.put(2, new HashMap<>());
-        map.get(0).put(0, 1);
-        map.get(0).put(1, 2);
-        map.get(0).put(2, 3);
-        map.get(1).put(0, 4);
-        map.get(1).put(1, 5);
-        map.get(1).put(2, 6);
-        map.get(2).put(0, 7);
-        map.get(2).put(1, 8);
-        map.get(2).put(2, 9);
+        Map<Integer, Map<Integer, Integer>> map = Map.of(
+                0, Map.of(0, 1, 1, 2, 2, 3),
+                1, Map.of(0, 4, 1, 5, 2, 6),
+                2, Map.of(0, 7, 1, 8, 2, 9)
+        );
+        int[][] m2 = {
+                {1, 0, 0},
+                {0, 1, 0},
+                {0, 0, 1}
+        };
+        Map<Integer, Map<Integer, Integer>> map2 = Map.of(
+                0, Map.of(0, 1),
+                1, Map.of(1, 1),
+                2, Map.of(2, 1)
+        );
+
         return Stream.of(
-                Arguments.of(m, map)
+                Arguments.of(m, map),
+                Arguments.of(m2, map2)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("matrixInversionDataProvider")
+    public void testMatrixArrayInversion(int[][] m, int[][] inverted) {
+        int[][] result = Matrix.invert(m);
+        assertThat(result).isEqualTo(inverted);
+        System.out.println(Arrays.deepToString(result));
+    }
+
+    @ParameterizedTest
+    @MethodSource("matrixInversionDataProvider")
+    public void testMatrixMapInversion(int[][] m, int[][] inverted) {
+        Map<Integer, Map<Integer, Integer>> originalMatrix = Matrix.convert(m);
+        Map<Integer, Map<Integer, Integer>> result = Matrix.invert(originalMatrix);
+        assertThat(result).isEqualTo(Matrix.convert(inverted));
+    }
+
+
+    private static Stream<Arguments> matrixInversionDataProvider() {
+        int[][] m = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+        int[][] inverted = {
+                {1, 4, 7},
+                {2, 5, 8},
+                {3, 6, 9}
+        };
+
+        int[][] identity = {
+                {1, 0, 0},
+                {0, 1, 0},
+                {0, 0, 1}
+        };
+        return Stream.of(
+                Arguments.of(m, inverted),
+                Arguments.of(identity, identity)
         );
     }
 }
