@@ -1,6 +1,6 @@
 package com.fherdelpino.algorithms.sort;
 
-import com.fherdelpino.collections.CollectionsTestUtils;
+import com.fherdelpino.datastructures.collections.CollectionsTestUtils;
 import org.junit.Before;
 import org.junit.Test;
 

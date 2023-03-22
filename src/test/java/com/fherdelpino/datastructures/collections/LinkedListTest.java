@@ -1,4 +1,4 @@
-package com.fherdelpino.collections;
+package com.fherdelpino.datastructures.collections;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

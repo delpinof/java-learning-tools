@@ -1,7 +1,6 @@
-package com.fherdelpino.collections.sort;
+package com.fherdelpino.datastructures.collections.sort;
 
-import com.fherdelpino.datastructures.collections.sort.QuickSort;
-import com.fherdelpino.collections.CollectionsTestUtils;
+import com.fherdelpino.datastructures.collections.CollectionsTestUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;

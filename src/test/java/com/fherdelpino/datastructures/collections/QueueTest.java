@@ -1,4 +1,4 @@
-package com.fherdelpino.collections;
+package com.fherdelpino.datastructures.collections;
 
 import com.fherdelpino.datastructures.collections.Queue;
 import lombok.extern.slf4j.Slf4j;

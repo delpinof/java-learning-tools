@@ -1,7 +1,6 @@
-package com.fherdelpino.collections.search;
+package com.fherdelpino.datastructures.collections.search;
 
-import com.fherdelpino.datastructures.collections.search.BinarySearch;
-import com.fherdelpino.collections.CollectionsTestUtils;
+import com.fherdelpino.datastructures.collections.CollectionsTestUtils;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
