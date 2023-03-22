@@ -6,17 +6,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class DoubleLinkedListTest {
 
+    DoubleLinkedList dll = new DoubleLinkedList();
+
     @Test
-    public void test() {
-        StringBuilder testString = new StringBuilder("AAWSWS");
+    public void testGetValues() {
+        String testString = "ABCD";
+        dll.insertWord(testString);
+        assertThat(dll.getValues()).isEqualTo(testString);
+    }
 
-        DoubleLinkedList dll = new DoubleLinkedList();
-
+    @Test
+    public void testGetValuesReversed() {
+        StringBuilder testString = new StringBuilder("ABCD");
         dll.insertWord(testString.toString());
-
-        assertThat(dll.getValues()).isEqualTo(testString.toString());
         assertThat(dll.getValuesReversed()).isEqualTo(testString.reverse().toString());
+    }
 
+    @Test
+    public void testRemove() {
+        dll.insertWord("AAWSWS");
         assertThat(dll.remove("AWS")).isEqualTo("");
     }
+
 }
