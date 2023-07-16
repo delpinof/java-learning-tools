@@ -1,12 +1,12 @@
 package com.fherdelpino.challenge;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
 public class ArraysUtilsTest {
@@ -72,7 +72,7 @@ public class ArraysUtilsTest {
 
     @Test
     public void testCountDuplicates() {
-        int result = ArraysUtils.countDuplicates(new int[]{1,2,3}, new int[]{3,4,5});
+        int result = ArraysUtils.countDuplicates(new int[]{1, 2, 3}, new int[]{3, 4, 5});
         assertEquals(1, result);
     }
 }

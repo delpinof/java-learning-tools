@@ -1,8 +1,8 @@
 package com.fherdelpino.algorithms.sort;
 
 import com.fherdelpino.datastructures.collections.CollectionsTestUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,7 +10,7 @@ public class SortTest {
     int[] unSorted;
     int[] sorted;
 
-    @Before
+    @BeforeEach
     public void init() {
         unSorted = new int[]{6, 5, 4, 3, 2, 1};
         sorted = new int[]{1, 2, 3, 4, 5, 6};
@@ -42,8 +42,8 @@ public class SortTest {
     public void testSelectionSort() {
         int[] testData = CollectionsTestUtils.getTestDataRandomNInts(100);
         new SelectionSort().sort(testData);
-        for (int i = 0; i< testData.length-1; i++) {
-            assertThat(testData[i]).isLessThanOrEqualTo(testData[i+1]);
+        for (int i = 0; i < testData.length - 1; i++) {
+            assertThat(testData[i]).isLessThanOrEqualTo(testData[i + 1]);
         }
 
     }

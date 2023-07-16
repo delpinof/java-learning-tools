@@ -1,40 +1,37 @@
 package com.fherdelpino.challenge;
 
-import java.util.Arrays;
-import java.util.Collection;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(Parameterized.class)
 public class ParameterizedFibonacciTest {
 
-    @Parameterized.Parameters
-    public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] {
-                {1,0}, {2,1}, {3,1}, {4,2}, {5,3}, {6,5}, {7,8}, {8,13}
-        });
+    public static Stream<Arguments> fData() {
+        return Stream.of(
+                Arguments.of(1, 0),
+                Arguments.of(2, 1),
+                Arguments.of(3, 1),
+                Arguments.of(4, 2),
+                Arguments.of(5, 3),
+                Arguments.of(6, 5),
+                Arguments.of(7, 8),
+                Arguments.of(8, 13)
+        );
     }
 
-    private final int fInput;
-
-    private final int fExpected;
-
-    public ParameterizedFibonacciTest(int input, int expected) {
-        this.fInput = input;
-        this.fExpected = expected;
+    @ParameterizedTest
+    @MethodSource("fData")
+    public void testCompute(int fInput, int fExpected) {
+        assertThat(Fibonacci.compute(fInput)).isEqualTo(fExpected);
     }
 
-    @Test
-    public void testCompute() {
-        assertEquals(fExpected, Fibonacci.compute(fInput));
-    }
-
-    @Test
-    public void testComputeWithMemo() {
-        assertEquals(fExpected, Fibonacci.computeWithMemo(fInput));
+    @ParameterizedTest
+    @MethodSource("fData")
+    public void testComputeWithMemo(int fInput, int fExpected) {
+        assertThat(Fibonacci.computeWithMemo(fInput)).isEqualTo(fExpected);
     }
 }

@@ -4,8 +4,8 @@ import com.baeldung.graphs.DijkstraAlgorithm;
 import com.baeldung.graphs.Graph;
 import com.baeldung.graphs.Node;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 @Slf4j
 public class GraphTest {
@@ -14,7 +14,7 @@ public class GraphTest {
 
     Node nodeA = new Node("A");
 
-    @Before
+    @BeforeEach
     public void setUp() {
         Node nodeB = new Node("B");
         Node nodeC = new Node("C");

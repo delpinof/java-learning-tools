@@ -3,7 +3,7 @@ package com.fherdelpino.command;
 import com.fherdelpino.designpatterns.command.control.RemoteControl;
 import com.fherdelpino.designpatterns.command.vendor.Light;
 import com.fherdelpino.designpatterns.command.vendor.Stereo;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class RemoteControlTest {
 

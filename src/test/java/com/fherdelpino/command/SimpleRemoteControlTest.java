@@ -5,7 +5,7 @@ import com.fherdelpino.designpatterns.command.commandclass.LightOnCommand;
 import com.fherdelpino.designpatterns.command.control.SimpleRemoteControl;
 import com.fherdelpino.designpatterns.command.vendor.GarageDoor;
 import com.fherdelpino.designpatterns.command.vendor.Light;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SimpleRemoteControlTest {
 

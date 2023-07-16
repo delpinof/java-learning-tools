@@ -1,19 +1,21 @@
 package com.fherdelpino;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.fherdelpino.bitmanupulation.BitManipulation.getBit;
 import static com.fherdelpino.bitmanupulation.BitManipulation.setBit;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
 public class BitManipulationTest {
 
     @Test
     public void test() {
-        for (int i = 1; i < 10; i++) {
-            log.info("num={}", Integer.toBinaryString(1 << i));
+        for (int i = 1; i <= 30; i++) {
+            log.info("num={}", 1 << i);
         }
 
     }

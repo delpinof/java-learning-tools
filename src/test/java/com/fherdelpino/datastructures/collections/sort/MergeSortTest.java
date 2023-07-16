@@ -2,17 +2,17 @@ package com.fherdelpino.datastructures.collections.sort;
 
 import com.fherdelpino.datastructures.collections.CollectionsTestUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
 public class MergeSortTest {
 
     MergeSort mergeSort;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         mergeSort = new MergeSort();
     }

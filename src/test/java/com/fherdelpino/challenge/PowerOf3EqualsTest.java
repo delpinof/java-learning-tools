@@ -5,11 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 @Slf4j
 public class PowerOf3EqualsTest {
@@ -18,7 +19,7 @@ public class PowerOf3EqualsTest {
     private static final int MAX = 100; //usually 1K
     private int count;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         count = 0;
     }
@@ -132,7 +133,7 @@ public class PowerOf3EqualsTest {
         }
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         log.info("total={}", count);
     }
