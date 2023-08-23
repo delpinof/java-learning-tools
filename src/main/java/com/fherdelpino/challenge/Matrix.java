@@ -69,6 +69,26 @@ public class Matrix {
         return result;
     }
 
+    public static int[][] rotateRight(int[][] m) {
+        int[][] result = new int[m.length][m[0].length];
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[0].length; j++) {
+                result[j][m.length - i - 1] = m[i][j];
+            }
+        }
+        return result;
+    }
+
+    public static int[][] verticalMirror(int[][] m) {
+        int[][] result = new int[m.length][m[0].length];
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[0].length; j++) {
+                result[i][m.length - j - 1] = m[i][j];
+            }
+        }
+        return result;
+    }
+
     public static Map<Integer, Map<Integer, Integer>> invert(Map<Integer, Map<Integer, Integer>> m) {
         Map<Integer, Map<Integer, Integer>> result = new HashMap<>();
         for (int rowKey : m.keySet()) {

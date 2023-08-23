@@ -187,4 +187,50 @@ public class MatrixTest {
                 arguments(identity, identity)
         );
     }
+
+    @ParameterizedTest(name = "{index} => {arguments}")
+    @MethodSource("matrixRotateRightDataProvider")
+    public void testMatrixRotateRight(int[][] matrix, int[][] expected) {
+
+        int[][] result = Matrix.rotateRight(matrix);
+
+        assertThat(result).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> matrixRotateRightDataProvider() {
+        int[][] m = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+        int[][] r = {
+                {7, 4, 1},
+                {8, 5, 2},
+                {9, 6, 3}
+        };
+        return Stream.of(Arguments.of(m, r));
+    }
+
+    @ParameterizedTest(name = "{index} => {arguments}")
+    @MethodSource("matrixVerticalMirrorDataProvider")
+    public void testMatrixVerticalMirror(int[][] matrix, int[][] expected) {
+
+        int[][] result = Matrix.verticalMirror(matrix);
+
+        assertThat(result).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> matrixVerticalMirrorDataProvider() {
+        int[][] m = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+        int[][] r = {
+                {3, 2, 1},
+                {6, 5, 4},
+                {9, 8, 7}
+        };
+        return Stream.of(Arguments.of(m, r));
+    }
 }
