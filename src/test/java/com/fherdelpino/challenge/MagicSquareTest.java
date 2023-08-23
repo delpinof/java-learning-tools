@@ -20,22 +20,24 @@ public class MagicSquareTest {
         for (int[] row : magicSquare) {
             log.info("{}", row);
         }
-
-        int rowSum = 0;
-        int colSum = 0;
+        int diagSum = 0;
+        int backDiagSum = 0;
         List<Integer> sums = new ArrayList<>();
         for (int i = 0; i < size; i++) {
+            int rowSum = 0;
+            int colSum = 0;
             for (int j = 0; j < size; j++) {
                 rowSum += magicSquare[i][j];
                 colSum += magicSquare[j][i];
             }
             sums.add(rowSum);
             sums.add(colSum);
-            rowSum = 0;
-            colSum = 0;
+            diagSum += magicSquare[i][i];
+            backDiagSum += magicSquare[i][size-i-1];
         }
-        int sum = sums.get(0);
-        assertThat(sums).allMatch(element -> element.equals(sum));
-        log.info("All sums match {}", sum);
+        sums.add(diagSum);
+        sums.add(backDiagSum);
+        int magicNumber = (size*size*size+size)/2;
+        assertThat(sums).allMatch(element -> element.equals(magicNumber), String.format("All sums match %s", magicNumber));
     }
 }

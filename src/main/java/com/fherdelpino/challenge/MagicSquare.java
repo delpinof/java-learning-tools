@@ -4,34 +4,43 @@ public class MagicSquare {
     public int[][] build(int size) {
         int[][] matrix = new int[size][size];
         int rowIndex = 0;
-        int colIndex = 0;
+        int colIndex = 1;
         for (int n = 1; n <= size * size; n++) {
             matrix[rowIndex][colIndex] = n;
-            int[] newPosition = getNextPosition(rowIndex, colIndex, matrix);
-            rowIndex = newPosition[0];
-            colIndex = newPosition[1];
+            IndexPair newPosition = getNextPosition(rowIndex, colIndex, matrix);
+            rowIndex = newPosition.row;
+            colIndex = newPosition.col;
         }
         return matrix;
     }
 
-    public int[] getNextPosition(int row, int col, int[][] m) {
-        int newRow = row;
-        int newCol = col;
-        newRow++;
-        newCol--;
-        if (newRow >= m.length) {
-            newRow = 0;
-        }
-        if (newCol < 0) {
-            newCol = m.length - 1;
-        }
+    private IndexPair getNextPosition(int row, int col, int[][] m) {
+        int newRow = decrease(row, m.length);
+        int newCol = increase(col, m.length);
         if (m[newRow][newCol] != 0) {
-            newRow = row;
-            newCol--;
-            if (newCol < 0) {
-                newCol = m.length - 1;
-            }
+            newCol = col;
+            newRow = decrease(newRow, m.length);
         }
-        return new int[]{newRow, newCol};
+        return new IndexPair(newRow, newCol);
     }
+
+    private int increase(int index, int size) {
+        int result = index + 1;
+        if (result >= size) {
+            result = 0;
+        }
+        return result;
+    }
+
+    private int decrease(int index, int size) {
+        int result = index - 1;
+        if (result < 0) {
+            result = size - 1;
+        }
+        return result;
+    }
+
+    private record IndexPair(int row, int col) {
+    }
+
 }
