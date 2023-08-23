@@ -58,10 +58,10 @@ public class Tree {
         }
     }
 
-    public void printBFS() {
+    public void printBFSMultiLevel() {
         Queue<Tree> queue = new LinkedList<>();
         queue.add(this);
-        queue.add(null);
+        queue.add(null); //to identify each level
         while (!queue.isEmpty()) {
             Tree actual = queue.remove();
             if (actual != null) {
@@ -75,6 +75,21 @@ public class Tree {
                     queue.add(null);
                     System.out.println();
                 }
+            }
+        }
+    }
+
+    public void printBFS() {
+        Queue<Tree> queue = new LinkedList<>();
+        queue.add(this);
+        while(!queue.isEmpty()) {
+            Tree actual = queue.remove();
+            System.out.println(actual.data + " ");
+            if (actual.left != null) {
+                queue.add(actual.left);
+            }
+            if (actual.right != null) {
+                queue.add(actual.right);
             }
         }
     }
