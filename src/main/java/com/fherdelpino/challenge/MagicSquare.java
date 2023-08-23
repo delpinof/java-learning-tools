@@ -43,4 +43,17 @@ public class MagicSquare {
     private record IndexPair(int row, int col) {
     }
 
+    public int[][][] buildAllMagicSquares(int size) {
+        int[][] magicSquareBase = build(size);
+        var magicSquareBaseRotatedRight = Matrix.rotateRight(magicSquareBase);
+        var magicSquareBaseRotatedInverted = Matrix.rotateRight(magicSquareBaseRotatedRight);
+        var magicSquareBaseRotatedLeft = Matrix.rotateRight(magicSquareBaseRotatedInverted);
+        var magicSquareMirrored = Matrix.verticalMirror(magicSquareBase);
+        var magicSquareMirroredRotatedRight = Matrix.rotateRight(magicSquareMirrored);
+        var magicSquareMirroredRotatedInverted = Matrix.rotateRight(magicSquareMirroredRotatedRight);
+        var magicSquareMirroredRotatedLeft = Matrix.rotateRight(magicSquareMirroredRotatedInverted);
+        return new int[][][]{magicSquareBase, magicSquareBaseRotatedRight, magicSquareBaseRotatedInverted, magicSquareBaseRotatedLeft,
+                magicSquareMirrored, magicSquareMirroredRotatedRight, magicSquareMirroredRotatedInverted, magicSquareMirroredRotatedLeft};
+    }
+
 }
