@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
@@ -21,20 +22,21 @@ public class MergeSortTest {
     public void test4Ints() {
         int[] testData = {2, 4, 3, 1};
         int[] result = mergeSort.sort(testData);
-        log.info("result={}", result);
+        assertThat(result).isSorted();
     }
 
     @Test
     public void test3Ints() {
         int[] testData = {2, 3, 1};
         int[] result = mergeSort.sort(testData);
-        log.info("result={}", result);
+        assertThat(result).isSorted();
     }
 
     @Test
     public void test10Ints() {
         int[] testData = CollectionsTestUtils.testData10IntsReverseOrder.clone();
-        log.info("result={}", mergeSort.sort(testData));
+        int[] result = mergeSort.sort(testData);
+        assertThat(result).isSorted();
     }
 
     @Test
@@ -43,8 +45,8 @@ public class MergeSortTest {
         long timeStart = System.currentTimeMillis();
         int[] result = mergeSort.sort(testData);
         long timeTaken = System.currentTimeMillis() - timeStart;
-        log.info("result={}", result);
         log.info("time={}", timeTaken);
+        assertThat(result).isSorted();
     }
 
     @Test
