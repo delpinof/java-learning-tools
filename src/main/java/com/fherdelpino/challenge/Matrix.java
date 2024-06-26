@@ -79,6 +79,36 @@ public class Matrix {
         return result;
     }
 
+    // 0,0 -> 0,2 -> 2,2 -> 2,0 -> 0,0
+    // 0,2 -> 2,2
+    // 2,2 -> 2,0
+    // 2,0 -> 0,0
+
+    // 0,1 -> 1,2
+    // 1,2 -> 2,1
+    // 2,1 -> 1,0
+    // 1,0 -> 0,1
+    public static void rotateClockWise(int[][] m) {
+        for (int i = 0; i < m.length / 2; i++) {
+            for (int j = i; j < m.length - i - 1; j++) {
+                switchFour(m, i, j);
+            }
+        }
+    }
+
+    private static void switchFour(int[][] m, int i, int j) {
+        int prevValue = m[i][j];
+        int nextValue;
+        for (int count = 0; count < 4; count++) {
+            int tmpJ = j;
+            j = m.length - i - 1;
+            i = tmpJ;
+            nextValue = m[i][j];
+            m[i][j] = prevValue;
+            prevValue = nextValue;
+        }
+    }
+
     public static int[][] verticalMirror(int[][] m) {
         int[][] result = new int[m.length][m[0].length];
         for (int i = 0; i < m.length; i++) {

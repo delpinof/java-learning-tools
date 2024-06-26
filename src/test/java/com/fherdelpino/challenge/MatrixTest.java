@@ -197,18 +197,41 @@ public class MatrixTest {
         assertThat(result).isEqualTo(expected);
     }
 
+    @ParameterizedTest(name = "{index} => {arguments}")
+    @MethodSource("matrixRotateRightDataProvider")
+    public void testMatrixRotateClockWise(int[][] matrix, int[][] expected) {
+        Matrix.rotateClockWise(matrix);
+        assertThat(matrix).isEqualTo(expected);
+    }
+
     private static Stream<Arguments> matrixRotateRightDataProvider() {
-        int[][] m = {
-                {1, 2, 3},
-                {4, 5, 6},
-                {7, 8, 9}
-        };
-        int[][] r = {
-                {7, 4, 1},
-                {8, 5, 2},
-                {9, 6, 3}
-        };
-        return Stream.of(Arguments.of(m, r));
+        return Stream.of(
+                Arguments.of(createMatrix(3), createRotatedMatrix(3)),
+                Arguments.of(createMatrix(4), createRotatedMatrix(4)),
+                Arguments.of(createMatrix(5), createRotatedMatrix(5))
+        );
+    }
+
+    private static int[][] createMatrix(int size) {
+        int[][] m = new int[size][size];
+        int count = 1;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                m[i][j] = count++;
+            }
+        }
+        return m;
+    }
+
+    private static int[][] createRotatedMatrix(int size) {
+        int[][] m = new int[size][size];
+        int count = 1;
+        for (int i = size - 1; i >= 0; i--) {
+            for (int j = 0; j < size; j++) {
+                m[j][i] = count++;
+            }
+        }
+        return m;
     }
 
     @ParameterizedTest(name = "{index} => {arguments}")
