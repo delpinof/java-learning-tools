@@ -8,6 +8,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -74,5 +77,20 @@ public class MergeSortTest {
                 Arguments.of(new int[]{2, 3, 1}),
                 Arguments.of(new int[]{2, 4, 3, 1})
         );
+    }
+
+    @Test
+    public void binarySearchTest() {
+        List<Integer> list = new ArrayList<>(List.of(0,10,20,30));
+
+        //When found the returned value is the index
+        assertThat(Collections.binarySearch(list, 0)).isEqualTo(0);
+        assertThat(Collections.binarySearch(list, 30)).isEqualTo(3);
+
+        //When not found, the returned value is the position it would be but -1*-1
+        assertThat(Collections.binarySearch(list, -1)).isEqualTo(-1);
+        assertThat(Collections.binarySearch(list, 5)).isEqualTo(-2);
+        assertThat(Collections.binarySearch(list, 25)).isEqualTo(-4);
+        assertThat(Collections.binarySearch(list, 40)).isEqualTo(-5);
     }
 }
