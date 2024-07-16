@@ -3,6 +3,8 @@ package com.fherdelpino.algorithms;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Slf4j
@@ -24,4 +26,19 @@ public class PowerSetTest {
             log.info("bits={}", bits);
         }
     }
+
+    @Test
+    public void testPowerSet() {
+        PowerSet powerSet = new PowerSet();
+        var result = powerSet.powerSet(List.of(1, 7, 2, 4));
+        result.sort(Comparator.comparingInt(List::size));
+        for (var set : result)
+            log.info("set={}", set);
+    }
+    @Test
+    public void test() {
+        var result = new PowerSet().powerSet(List.of(1, 7, 2, 4));
+        result.sort(Comparator.comparingInt(List::size));
+    }
+
 }

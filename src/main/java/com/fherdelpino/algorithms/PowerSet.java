@@ -1,6 +1,7 @@
 package com.fherdelpino.algorithms;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class PowerSet {
@@ -35,4 +36,22 @@ public class PowerSet {
         }
         return list;
     }
+    public <T> List<List<T>> powerSet(List<T> elements) {
+        return powerSet(elements, new ArrayList<>(), 0);
+    }
+
+    private <T> List<List<T>> powerSet(List<T> elements, List<T> subSet, int i) {
+        List<List<T>> result;
+        if (i == elements.size()) {
+            result = new ArrayList<>();
+            result.add(subSet);
+            return result;
+        } else {
+            result = powerSet(elements, new ArrayList<>(subSet), i+1);
+            subSet.add(elements.get(i));
+            result.addAll(powerSet(elements, new ArrayList<>(subSet), i+1));
+        }
+        return result;
+    }
+
 }
