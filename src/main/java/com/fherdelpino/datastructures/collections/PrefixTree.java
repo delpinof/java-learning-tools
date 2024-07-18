@@ -8,9 +8,12 @@ public class PrefixTree {
     private String c;
     private List<PrefixTree> nodes;
 
+    private boolean isTerminal;
+
     public PrefixTree() {
         c = "";
         nodes = new ArrayList<>();
+        isTerminal = false;
     }
 
     private PrefixTree(String c) {
@@ -20,6 +23,7 @@ public class PrefixTree {
 
     public void addWord(String word) {
         if (word.isEmpty()) {
+            this.isTerminal = true;
             return;
         }
         String letter = word.substring(0, 1);
@@ -64,6 +68,9 @@ public class PrefixTree {
             for (String word : node.getWords()) {
                 words.add(this.c + word);
             }
+        }
+        if (isTerminal) {
+            words.add(this.c);
         }
         return words;
     }

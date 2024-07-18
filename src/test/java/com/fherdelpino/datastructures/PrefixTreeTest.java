@@ -33,7 +33,7 @@ public class PrefixTreeTest {
         pt.addWord("bull");
         pt.addWord("bullying");
         pt.addWord("bulk");
-        assertThat(pt.getWords()).contains("bull", "bullying", "bulk");
+        assertThat(pt.getWords()).containsExactlyInAnyOrder("bull", "bullying", "bulk");
     }
 
     @Test
@@ -44,7 +44,7 @@ public class PrefixTreeTest {
         pt.addWord("madman");
         pt.addWord("ant");
         pt.addWord("and");
-        assertThat(pt.getWords("an")).containsExactly("ant", "and");
+        assertThat(pt.getWords("an")).containsExactlyInAnyOrder("ant", "and");
     }
 
     @Test
@@ -52,7 +52,7 @@ public class PrefixTreeTest {
         PrefixTree pt = new PrefixTree();
         pt.addWord("ab");
         pt.addWord("a");
-        assertThat(pt.getWords("a")).containsExactly("a", "ab");
+        assertThat(pt.getWords("a")).containsExactlyInAnyOrder("a", "ab");
     }
 
     @Test
@@ -70,8 +70,8 @@ public class PrefixTreeTest {
         PrefixTree pt = new PrefixTree();
         String[] words = BOOK.split("\\W+");
         for(String word : words) {
-            pt.addWord(word);
+            pt.addWord(word.toLowerCase());
         }
-        log.info("{}", pt.getWords("the"));
+        log.info("{}", pt.getWords("th"));
     }
 }
