@@ -6,7 +6,7 @@ import java.util.List;
 public class PrefixTree {
 
     private String c;
-    private List<PrefixTree> nodes;
+    private final List<PrefixTree> nodes;
 
     private boolean isTerminal;
 
@@ -46,15 +46,14 @@ public class PrefixTree {
         if (prefix == null || prefix.isEmpty()) {
             return this.getWords();
         }
-        String letter = prefix.substring(0, 1);
-        for (PrefixTree node : nodes) {
-            if (letter.equalsIgnoreCase(node.c)) {
-                String letters = prefix.substring(1);
-                for (String word : node.getWords(letters)) {
-                    words.add(this.c + word);
-                }
-            }
-        }
+        String firstLetter = prefix.substring(0, 1);
+        nodes.stream()
+                .filter(node -> firstLetter.equalsIgnoreCase(node.c))
+                .findFirst()
+                .ifPresent(node -> {
+                    node.getWords(prefix.substring(1))
+                            .forEach(word -> words.add(this.c + word));
+                });
         return words;
     }
 
@@ -64,12 +63,13 @@ public class PrefixTree {
             words.add(this.c);
             return words;
         }
-        for (PrefixTree node : this.nodes) {
-            for (String word : node.getWords()) {
-                words.add(this.c + word);
-            }
-        }
+        // get the words for each child node and prepend the current char c
+        this.nodes.forEach(node -> node.getWords()
+                .forEach(word -> words.add(this.c + word))
+        );
         if (isTerminal) {
+            // this is a saved word
+            // even though it has child nodes
             words.add(this.c);
         }
         return words;

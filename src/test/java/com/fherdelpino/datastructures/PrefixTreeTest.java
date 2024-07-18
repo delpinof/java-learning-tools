@@ -72,6 +72,6 @@ public class PrefixTreeTest {
         for(String word : words) {
             pt.addWord(word.toLowerCase());
         }
-        log.info("{}", pt.getWords("th"));
+        log.info("{}", pt.getWords("ex"));
     }
 }
