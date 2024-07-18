@@ -26,19 +26,19 @@ public class PrefixTree {
             this.isTerminal = true;
             return;
         }
-        String letter = word.substring(0, 1);
-        boolean found = false;
-        for (PrefixTree node : nodes) {
-            if (letter.equalsIgnoreCase(node.c)) {
-                node.addWord(word.substring(1));
-                found = true;
-            }
-        }
-        if (!found) {
-            PrefixTree node = new PrefixTree(letter);
-            node.addWord(word.substring(1));
-            nodes.add(node);
-        }
+        String firstLetter = word.substring(0, 1);
+        this.nodes.stream()
+                .filter(node -> firstLetter.equalsIgnoreCase(node.c))
+                .findFirst()
+                .ifPresentOrElse(node -> node.addWord(word.substring(1)),
+                        () -> {
+                            // firstLetter not found
+                            // create a new PrefixTree and add it to the nodes.
+                            PrefixTree node = new PrefixTree(firstLetter);
+                            node.addWord(word.substring(1));
+                            nodes.add(node);
+                        });
+
     }
 
     public List<String> getWords(String prefix) {
@@ -46,8 +46,8 @@ public class PrefixTree {
         if (prefix == null || prefix.isEmpty()) {
             return this.getWords();
         }
-        String letter = prefix.substring(0,1);
-        for (PrefixTree node: nodes) {
+        String letter = prefix.substring(0, 1);
+        for (PrefixTree node : nodes) {
             if (letter.equalsIgnoreCase(node.c)) {
                 String letters = prefix.substring(1);
                 for (String word : node.getWords(letters)) {
