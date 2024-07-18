@@ -1,27 +1,70 @@
 package com.fherdelpino.datastructures.collections;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PrefixTree {
 
-    public static void main(String[] args) {
-        new PrefixTree().run();
+    private String c;
+    private List<PrefixTree> nodes;
+
+    public PrefixTree() {
+        c = "";
+        nodes = new ArrayList<>();
     }
 
-    public void run() {
-        Collection<String> result = trie("de", Arrays.asList("dog", "deer", "deal"));
-        System.out.println(result);
-        int i = 10;
-        while(i--==0);
+    private PrefixTree(String c) {
+        this();
+        this.c = c;
     }
 
-    public Collection<String> trie(String s, Collection<String> words) {
-        Stream<String> x = words.stream();
-        Set<String> result = words.stream().filter(word -> word.startsWith(s)).collect(Collectors.toSet());
-        return result;
+    public void addWord(String word) {
+        if (word.isEmpty()) {
+            return;
+        }
+        String letter = word.substring(0, 1);
+        boolean found = false;
+        for (PrefixTree node : nodes) {
+            if (letter.equalsIgnoreCase(node.c)) {
+                node.addWord(word.substring(1));
+                found = true;
+            }
+        }
+        if (!found) {
+            PrefixTree node = new PrefixTree(letter);
+            node.addWord(word.substring(1));
+            nodes.add(node);
+        }
+    }
+
+    public List<String> getWords(String prefix) {
+        List<String> words = new ArrayList<>();
+        if (prefix == null || prefix.isEmpty()) {
+            return this.getWords();
+        }
+        String letter = prefix.substring(0,1);
+        for (PrefixTree node: nodes) {
+            if (letter.equalsIgnoreCase(node.c)) {
+                String letters = prefix.substring(1);
+                for (String word : node.getWords(letters)) {
+                    words.add(this.c + word);
+                }
+            }
+        }
+        return words;
+    }
+
+    public List<String> getWords() {
+        List<String> words = new ArrayList<>();
+        if (this.nodes == null || this.nodes.isEmpty()) {
+            words.add(this.c);
+            return words;
+        }
+        for (PrefixTree node : this.nodes) {
+            for (String word : node.getWords()) {
+                words.add(this.c + word);
+            }
+        }
+        return words;
     }
 }
