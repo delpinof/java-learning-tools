@@ -28,8 +28,12 @@ public class LinkedListTest {
         for (int i = 5; i > 0; i--) {
             linkedList.append(i);
         }
-
-        linkedList.printList();
+        var node = linkedList.next();
+        int i = 5;
+        while(node != null) {
+            log.info("{}", node.data);
+            node = linkedList.next();
+        }
     }
 
     @Test

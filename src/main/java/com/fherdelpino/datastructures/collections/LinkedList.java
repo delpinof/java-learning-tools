@@ -6,6 +6,16 @@ import lombok.extern.slf4j.Slf4j;
 public class LinkedList {
 
     private Node head;
+    private Node node;
+
+    public Node next() {
+        if (node == null) {
+            node = head;
+        } else {
+            node = node.next;
+        }
+        return node;
+    }
 
     public void append(int n) {
         if (head == null) {
