@@ -1,57 +1,78 @@
 package com.fherdelpino.datastructures;
 
-import java.util.HashSet;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
-import java.util.function.Consumer;
+import java.util.Map;
+import java.util.Objects;
 
 public class Trie {
+    private final Character c;
+    private final Map<Character, Trie> children;
+    private boolean isFinal;
 
-    private final char c;
-    private final Set<Trie> childs;
 
     public Trie() {
-        c = ' ';
-        this.childs = new HashSet<>();
+        this(null);
     }
 
-    public Trie(char c) {
+    public Trie(Character c) {
         this.c = c;
-        this.childs = new HashSet<>();
+        children = new HashMap<>();
     }
 
-    public void addWord(String word) {
-        if (word.length() < 1) {
-            return;
-        }
-        char tmpC = word.toCharArray()[0];
+    public void addWord(String s) {
+        addWord(s, 0);
+    }
 
-        Consumer<Trie> addWordToChild = child -> child.addWord(word.substring(1));
-        Runnable addNewTrie = () -> {
-            Trie t = new Trie(tmpC);
-            t.addWord(word.substring(1));
-            childs.add(t);
-        };
-        childs.stream()
-                .filter(child -> child.c == tmpC)
-                .findFirst()
-                .ifPresentOrElse(addWordToChild, addNewTrie);
+    private void addWord(String s, int i) {
+        char c = s.charAt(i);
+        if (!children.containsKey(c)) {
+            children.put(c, new Trie(c));
+        }
+        Trie t = children.get(c);
+        if (i < s.length() - 1) {
+            t.addWord(s, i + 1);
+        } else {
+            t.isFinal = true;
+        }
+    }
+
+    public List<String> getWords() {
+        String thisChar = Objects.isNull(this.c) ? "": String.valueOf(this.c);
+        List<String> words = new ArrayList<>();
+        if (this.isFinal) {
+            words.add(thisChar);
+        } else {
+            for (Trie t : children.values()) {
+                for (String word : t.getWords()) {
+                    words.add(thisChar + word);
+                }
+            }
+        }
+        return words;
+    }
+
+    public List<String> getWords(String prefix) {
+        return getWords(prefix, 0);
+    }
+
+    private List<String> getWords(String prefix, int i) {
+        List<String> words = new ArrayList<>();
+        if (i == prefix.length()) {
+            return this.getWords();
+        } else if (children.containsKey(prefix.charAt(i))) {
+            Trie t = children.get(prefix.charAt(i));
+            String thisChar = Objects.isNull(this.c) ? "": String.valueOf(this.c);
+            for (String word : t.getWords(prefix, i + 1)) {
+                words.add(thisChar + word);
+            }
+        }
+        return words;
     }
 
     public boolean searchWord(String word) {
-        char[] chars = word.toLowerCase().toCharArray();
-        char tmpC = chars[0];
-        List<Trie> tries = childs.stream()
-                .filter(trie -> trie.c == tmpC)
-                .toList();
-        if (tries.size() == 0) {
-            return false;
-        } else {
-            if (chars.length > 1)
-                return tries.get(0).searchWord(word.substring(1));
-            else
-                return true;
-        }
+        return true;
     }
-
 }

@@ -3,6 +3,9 @@ package com.fherdelpino.datastructures;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -30,6 +33,26 @@ public class TrieTest {
         t.addWord("deer");
         t.addWord("deal");
         log.info("trie={}", t);
+    }
+
+    @Test
+    public void testContainsWords() {
+        Trie t = new Trie();
+        t.addWord("dog");
+        t.addWord("deer");
+        t.addWord("deal");
+        List<String> words = t.getWords();
+        assertThat(words).containsExactlyInAnyOrder("dog", "deer", "deal");
+    }
+
+    @Test
+    public void testContainsWordsPrefix() {
+        Trie t = new Trie();
+        t.addWord("dog");
+        t.addWord("deer");
+        t.addWord("deal");
+        List<String> words = t.getWords("de");
+        assertThat(words).containsExactlyInAnyOrder("deer", "deal");
     }
 
     @Test
