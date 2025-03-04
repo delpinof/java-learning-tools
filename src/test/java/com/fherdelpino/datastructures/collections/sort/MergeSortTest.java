@@ -9,12 +9,14 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
 public class MergeSortTest {
@@ -92,5 +94,36 @@ public class MergeSortTest {
         assertThat(Collections.binarySearch(list, 5)).isEqualTo(-2);
         assertThat(Collections.binarySearch(list, 25)).isEqualTo(-4);
         assertThat(Collections.binarySearch(list, 40)).isEqualTo(-5);
+    }
+
+    @Test
+    public void binarySearchMatrixTest() {
+
+        int[][] matrix = {new int[]{1,3,5,7},
+                new int[]{10,11,16,20},
+                new int[]{23,30,34,60}
+        };
+
+        int result = Arrays.binarySearch(matrix, 3, (array,target) -> ((int[]) array)[0]-(int)target);
+
+        log.info("{}", result);
+        log.info("{}", -result-1);
+    }
+
+    @Test
+    public void testInteger() {
+        Integer i1 = 1;
+        Integer i2 = 1;
+        assertTrue(i1==i2);
+
+        Object o1 = new Object();
+        Object o2 = new Object();
+
+        //assertTrue(o1==o2);
+
+        String s1 = new String();
+        String s2 = new String();
+
+        //assertTrue(s1 == s2);
     }
 }
