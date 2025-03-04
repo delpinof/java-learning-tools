@@ -1,10 +1,12 @@
 package com.fherdelpino.challenge;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,6 +14,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Slf4j
 public class ATMTest {
 
     private ATM atm = new ATM();
@@ -27,6 +30,12 @@ public class ATMTest {
         Map<Integer, Integer> actualResult = atm.withdraw(denominationsSet, amount);
 
         assertThat(actualResult).isEqualTo(expectedResult);
+
+        List<String> result = actualResult.entrySet().stream()
+                .map(entry -> "[" + entry.getValue() + "," + entry.getKey() + "]")
+                .collect(Collectors.toList());
+
+        log.info("{}", result);
     }
 
     public static Stream<Arguments> testWithdraw() {
